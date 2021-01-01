@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">E-Commerce App</string>
+    <string name="extended_fab_content_desc">Extended fab content desc</string>
+    <string name="next">Next</string>
+</resources>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CartActivity.CartActivity">
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cart Preview"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:padding="10dp"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/textViewProductName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product Name"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+        app:layout_constraintEnd_toStartOf="@+id/textViewQuantity"/>
+
+    <TextView
+        android:id="@+id/textViewQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quantity Added"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/textViewProductName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/textViewProductName"/>
+
+    <TextView
+        android:id="@+id/textViewAccordion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1.Accordion"
+        android:layout_marginTop="18sp"
+        app:layout_constraintStart_toStartOf="@id/textViewProductName"
+        app:layout_constraintTop_toBottomOf="@id/textViewProductName"/>
+
+    <TextView
+        android:id="@+id/textViewDrum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2.Drum"
+        android:layout_marginTop="18sp"
+        app:layout_constraintStart_toStartOf="@id/textViewProductName"
+        app:layout_constraintTop_toBottomOf="@id/textViewAccordion"/>
+
+    <TextView
+        android:id="@+id/textViewFlute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3.Flute"
+        android:layout_marginTop="18sp"
+        app:layout_constraintStart_toStartOf="@id/textViewProductName"
+        app:layout_constraintTop_toBottomOf="@id/textViewDrum"/>
+
+    <TextView
+        android:id="@+id/textViewGuitar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4.Guitar"
+        android:layout_marginTop="18sp"
+        app:layout_constraintStart_toStartOf="@id/textViewProductName"
+        app:layout_constraintTop_toBottomOf="@id/textViewFlute"/>
+
+    <TextView
+        android:id="@+id/textViewPiano"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5.Piano"
+        android:layout_marginTop="18sp"
+        app:layout_constraintStart_toStartOf="@id/textViewProductName"
+        app:layout_constraintTop_toBottomOf="@id/textViewGuitar"/>
+
+    <TextView
+        android:id="@+id/textViewSaxophone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6.Saxophone"
+        android:layout_marginTop="18sp"
+        app:layout_constraintStart_toStartOf="@id/textViewProductName"
+        app:layout_constraintTop_toBottomOf="@id/textViewPiano"/>
+
+    <TextView
+        android:id="@+id/textViewTrumpet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="7.Trumpet"
+        android:layout_marginTop="18sp"
+        app:layout_constraintStart_toStartOf="@id/textViewProductName"
+        app:layout_constraintTop_toBottomOf="@id/textViewSaxophone"/>
+
+    <TextView
+        android:id="@+id/textViewViolin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="8.Violin"
+        android:layout_marginTop="18sp"
+        app:layout_constraintStart_toStartOf="@id/textViewProductName"
+        app:layout_constraintTop_toBottomOf="@id/textViewTrumpet"/>
+
+    <TextView
+        android:id="@+id/textViewAccordionQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_marginTop="18sp"
+        app:layout_constraintEnd_toEndOf="@id/textViewQuantity"
+        app:layout_constraintStart_toStartOf="@id/textViewQuantity"
+        app:layout_constraintTop_toBottomOf="@id/textViewQuantity"/>
+
+    <TextView
+        android:id="@+id/textViewDrumQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_marginTop="18sp"
+        app:layout_constraintEnd_toEndOf="@id/textViewQuantity"
+        app:layout_constraintStart_toStartOf="@id/textViewQuantity"
+        app:layout_constraintTop_toBottomOf="@id/textViewAccordionQuantity"/>
+
+    <TextView
+        android:id="@+id/textViewFluteQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_marginTop="18sp"
+        app:layout_constraintEnd_toEndOf="@id/textViewQuantity"
+        app:layout_constraintStart_toStartOf="@id/textViewQuantity"
+        app:layout_constraintTop_toBottomOf="@id/textViewDrumQuantity"/>
+
+    <TextView
+        android:id="@+id/textViewGuitarQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_marginTop="18sp"
+        app:layout_constraintEnd_toEndOf="@id/textViewQuantity"
+        app:layout_constraintStart_toStartOf="@id/textViewQuantity"
+        app:layout_constraintTop_toBottomOf="@id/textViewFluteQuantity"/>
+
+    <TextView
+        android:id="@+id/textViewPianoQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_marginTop="18sp"
+        app:layout_constraintEnd_toEndOf="@id/textViewQuantity"
+        app:layout_constraintStart_toStartOf="@id/textViewQuantity"
+        app:layout_constraintTop_toBottomOf="@id/textViewGuitarQuantity"/>
+
+    <TextView
+        android:id="@+id/textViewSaxophoneQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_marginTop="18sp"
+        app:layout_constraintEnd_toEndOf="@id/textViewQuantity"
+        app:layout_constraintStart_toStartOf="@id/textViewQuantity"
+        app:layout_constraintTop_toBottomOf="@id/textViewPianoQuantity"/>
+
+    <TextView
+        android:id="@+id/textViewTrumpetQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_marginTop="18sp"
+        app:layout_constraintEnd_toEndOf="@id/textViewQuantity"
+        app:layout_constraintStart_toStartOf="@id/textViewQuantity"
+        app:layout_constraintTop_toBottomOf="@id/textViewSaxophoneQuantity"/>
+
+    <TextView
+        android:id="@+id/textViewViolinQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_marginTop="18sp"
+        app:layout_constraintEnd_toEndOf="@id/textViewQuantity"
+        app:layout_constraintStart_toStartOf="@id/textViewQuantity"
+        app:layout_constraintTop_toBottomOf="@id/textViewTrumpetQuantity"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.e_commerceapp">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".CartActivity.CartActivity"></activity>
+        <activity android:name=".Violin.ViolinActivity" />
+        <activity android:name=".Trumpet.TrumpetActivity" />
+        <activity android:name=".Saxophone.SaxophoneActivity" />
+        <activity android:name=".Piano.PianoActivity" />
+        <activity android:name=".GuitarActivity.GuitarActivity" />
+        <activity android:name=".FluteActivity.FluteActivity" />
+        <activity android:name=".DrumActivity.DrumActivity" />
+        <activity android:name=".AccordionActivity.AccordionActivity" />
+        <activity android:name=".ProductActivity.ProductActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

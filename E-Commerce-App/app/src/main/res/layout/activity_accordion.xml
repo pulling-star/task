@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AccordionActivity.AccordionActivity">
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Accordion"
+        android:textSize="28dp"
+        android:text="Accordion"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:background="@color/colorPrimaryDark"
+        android:padding="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+                android:id="@+id/textViewDescription"
+                android:layout_width="230dp"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:padding="4dp"
+                android:hint="The accordion is a reed instrument,pull the air by pulling the bellows to make sound,suitable for accordion lovers and students Multi-purpose,in addition to solo, but also can ensemble,you worth it "
+                android:lineSpacingMultiplier="1.2"
+                android:inputType="textMultiLine"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+                app:layout_constraintEnd_toStartOf="@id/imageView"
+                />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                app:layout_constraintStart_toEndOf="@id/textViewDescription"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/textViewDescription"
+                />
+
+            <Button
+                android:id="@+id/buttonAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add to cart"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="@color/colorPrimaryDark"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewDescription"
+                />
+
+            <Button
+                android:id="@+id/buttonCartPreview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cart Preview"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="@color/colorPrimaryDark"
+                app:layout_constraintStart_toStartOf="@id/buttonAdd"
+                app:layout_constraintEnd_toEndOf="@id/buttonAdd"
+                app:layout_constraintTop_toBottomOf="@id/buttonAdd"
+                />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
