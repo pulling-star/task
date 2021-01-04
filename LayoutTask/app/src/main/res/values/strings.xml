@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">LayoutTask</string>
+    <string name="postedinfo">YaarMe is a social media platform, which aims to connect people in an organized manner. Users can follow accounts and optionally tag a relation with them, now they can switch their news feed in order to watch posts only from specific relation and share posts only with the people having special tag of relation.</string>
+    <string name="yaarme">YaarMe</string>
+    <string name="yaarme_com">yaarme.com</string>
+    <string-array name="dropdownItems">
+        <item>Like</item>
+        <item>Share</item>
+        <item>Follow</item>
+    </string-array>
+</resources>
