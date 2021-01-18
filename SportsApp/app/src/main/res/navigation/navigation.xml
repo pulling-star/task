@@ -18,5 +18,15 @@
         android:id="@+id/teamEventsFragment"
         android:name="com.example.sportsapp.TeamEvents.TeamEventsFragment"
         android:label="fragment_team_events"
-        tools:layout="@layout/fragment_team_events" />
+        tools:layout="@layout/fragment_team_events" >
+        <argument
+            android:name="teamId"
+            app:argType="string" />
+        <argument
+            android:name="teamName"
+            app:argType="string" />
+        <argument
+            android:name="teamDescription"
+            app:argType="string" />
+    </fragment>
 </navigation>

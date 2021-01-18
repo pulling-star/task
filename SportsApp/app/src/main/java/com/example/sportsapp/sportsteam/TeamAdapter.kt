@@ -6,14 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.sportsapp.R
 import com.example.sportsapp.model.TeamModel
-import java.util.ArrayList
 
 class TeamAdapter(private val context: Context, private val list: List<TeamModel>) :
     RecyclerView.Adapter<TeamAdapter.ViewHolder>(){
@@ -29,13 +27,17 @@ class TeamAdapter(private val context: Context, private val list: List<TeamModel
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = list[position]
         holder.teamName.text = data.strTeam
+        val teamId = data.idTeam
+        val teamName =  data.strTeam
+        val teamDescription =  data.strDescriptionEN
         Glide.with(context)
             .load(data.strTeamBadge)
             .apply(RequestOptions().fitCenter())
             .into(holder.teamImage)
         holder.itemView.setOnClickListener(object:View.OnClickListener{
             override fun onClick(v: View?) {
-                v?.findNavController()?.navigate(TeamFragmentDirections.actionTeamFragmentToTeamEventsFragment())
+                v?.findNavController()?.navigate(TeamFragmentDirections
+                    .actionTeamFragmentToTeamEventsFragment(teamId,teamName,teamDescription))
             }
 
         })
