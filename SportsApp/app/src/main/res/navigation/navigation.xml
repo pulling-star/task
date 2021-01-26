@@ -28,5 +28,17 @@
         <argument
             android:name="teamDescription"
             app:argType="string" />
+        <action
+            android:id="@+id/action_teamEventsFragment_to_scheduleFragment"
+            app:destination="@id/scheduleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scheduleFragment"
+        android:name="com.example.sportsapp.schedule.ScheduleFragment"
+        android:label="fragment_schedule"
+        tools:layout="@layout/fragment_schedule" >
+        <argument
+            android:name="teamId"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -14,8 +14,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.sportsapp.R
 import com.example.sportsapp.model.TeamModel
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 
 
 class TeamEventsFragment : Fragment() {
@@ -25,6 +27,8 @@ class TeamEventsFragment : Fragment() {
     lateinit var searchTextButton:Button
     lateinit var teamEventsViewModel:TeamEventsViewModel
     private lateinit var args : TeamEventsFragmentArgs
+    lateinit var scheduleFab:ExtendedFloatingActionButton
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +54,13 @@ class TeamEventsFragment : Fragment() {
             }
 
         })
+        scheduleFab.setOnClickListener(object:View.OnClickListener{
+            override fun onClick(v: View?) {
+                v?.findNavController()?.navigate(TeamEventsFragmentDirections
+                        .actionTeamEventsFragmentToScheduleFragment(args.teamId))
+            }
+
+        })
     }
 
     private fun setText(model: TeamModel) {
@@ -64,5 +75,6 @@ class TeamEventsFragment : Fragment() {
         teamName = view.findViewById(R.id.teamNameTextView)
         teamDescription = view.findViewById(R.id.teamDescriptionTextView)
         searchTextButton = view.findViewById(R.id.searchTextButton)
+        scheduleFab = view.findViewById(R.id.scheduleFab)
     }
 }

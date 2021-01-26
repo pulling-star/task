@@ -2,6 +2,7 @@ package com.example.sportsapp.api
 
 import android.app.Activity
 import com.example.sportsapp.model.BaseModel1
+import com.example.sportsapp.model.BaseModel2
 import com.example.sportsapp.model.TeamModel
 import com.example.sportsapp.network.NetworkClient
 import com.example.sportsapp.network.RetrofitEventListener
@@ -84,6 +85,30 @@ class ApiUserRestClient: Activity() {
             }
 
             override fun onFailure(call: Call<BaseModel1>, t: Throwable) {
+                retrofitEventListener.onError(call, t)
+            }
+        })
+    }
+
+    fun getTeamEventScheduleList(teamId:String,retrofitEventListener: RetrofitEventListener){
+        val retrofit = NetworkClient.retrofitClient
+        mApiUser = retrofit.create<ApiUser>(ApiUser::class.java)
+
+        val apiUserCall = mApiUser?.getScheduleDetails(teamId)
+
+        apiUserCall?.enqueue(object : Callback<BaseModel2> {
+
+            override fun onResponse(
+                    call: Call<BaseModel2>?,
+                    response: Response<BaseModel2>?
+            ) {
+
+                if (response?.body() != null) {
+                    retrofitEventListener.onSuccess(call, response.body())
+                }
+            }
+
+            override fun onFailure(call: Call<BaseModel2>, t: Throwable) {
                 retrofitEventListener.onError(call, t)
             }
         })

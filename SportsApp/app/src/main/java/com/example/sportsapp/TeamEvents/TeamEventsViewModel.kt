@@ -12,7 +12,6 @@ import retrofit2.Call
 class TeamEventsViewModel:ViewModel() {
     val liveDataTeamDetailSearch = MutableLiveData<List<TeamModel>>()
 
-
     fun CallTeamDetailList(teamId:String){
         ApiUserRestClient.instance.getTeamDetailList(teamId,object : RetrofitEventListener {
             override fun onSuccess(call: Call<*>?, response: Any?) {
