@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 searchViewModel.callSearchList(this@MainActivity, s.toString())
+
             }
 
             override fun afterTextChanged(s: Editable?) {

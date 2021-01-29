@@ -15,7 +15,6 @@ object NetworkClient {
             if (retrofit == null) {
                 val okHttpClientBuilder = OkHttpClient.Builder()
                 okHttpClientBuilder.connectTimeout(TIMEOUT.toLong(), TimeUnit.SECONDS)
-
                 retrofit = Retrofit.Builder()
                         .baseUrl(BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
