@@ -25,8 +25,8 @@ class WeatherAdapter(private  val context:Context, private val list:List<Daily>)
         val data = list[position]
         val unixSeconds = data.dt
         val date = Date(unixSeconds*1000L)
-        val dateFormat = SimpleDateFormat("EEEE,dd HH:mm",)
-        val dateString = dateFormat.format(date)+"AM"
+        val dateFormat = SimpleDateFormat("EEEE,dd")
+        val dateString = dateFormat.format(date)
         holder.dateTime.text=dateString
         val temp = data.temp.min - 273
         val tempStringMin = String.format("%.0f",temp)+"°C"

@@ -13,6 +13,7 @@ import com.example.weatherapp.model.BaseModel
 import com.example.weatherapp.model.Daily
 import com.jjoe64.graphview.DefaultLabelFormatter
 import com.jjoe64.graphview.GraphView
+import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import java.text.SimpleDateFormat
@@ -49,8 +50,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun tempFormat(temp: Double): String {
-        val temp = temp - 273
-        val tempString = String.format("%.0f", temp) + "°C"
+        val temp1 = temp - 273
+        val tempString = String.format("%.0f", temp1) + "°C"
         return tempString
     }
 
@@ -98,8 +99,7 @@ class MainActivity : AppCompatActivity() {
         val date = Date(unixSeconds * 1000L)
         val dateFormat = SimpleDateFormat("HH")
         val dateString = dateFormat.format(date)
-        val dateInt = dateString.toInt() + 1.00
-        return dateInt
+        return dateString.toDouble()
     }
 
     private fun GraphFormat(temp1: Double): Double {
