@@ -108,7 +108,7 @@ data class Restaurant (
     val order_url:String?=null,
     @SerializedName("order_deeplink")
     @Expose
-    val order_deeplink:String?,
+    val order_deeplink:String?=null,
     @SerializedName("is_table_reservation_supported")
     @Expose
     val is_table_reservation_supported:Long,

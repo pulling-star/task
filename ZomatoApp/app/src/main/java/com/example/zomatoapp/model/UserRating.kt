@@ -13,7 +13,7 @@ data class UserRating (
     @SerializedName("rating_color")
     @Expose
     val rating_color:String,
-    @SerializedName("rating_color")
+    @SerializedName("rating_obj")
     @Expose
     val rating_obj:RatingObj,
     @SerializedName("votes")

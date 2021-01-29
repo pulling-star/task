@@ -15,7 +15,7 @@ data class Location (
     val city:String,
     @SerializedName("city_id")
     @Expose
-    val city_id:String,
+    val city_id:Long,
     @SerializedName("latitude")
     @Expose
     val latitude:String,

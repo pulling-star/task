@@ -3,10 +3,14 @@ package com.example.zomatoapp.api
 import com.example.zomatoapp.model.BaseModel1
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface ApiUser {
-
-    @GET("v2.1/search?entity_id=11332&entity_type=city&q=oyalo")
-    fun getRestaurants(@Query("q")query:String) : Call<BaseModel1>
+    @Headers("user-key: ddbd4d09f67bd39cc8d20b84e6834f1f")
+    @GET("api/v2.1/search")
+    fun getRestaurants(@Query("entity_id") entityId:String,
+                       @Query("entity_type") entityType:String,
+                       @Query("q")q:String) : Call<BaseModel1>
 }
