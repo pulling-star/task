@@ -10,7 +10,9 @@ import retrofit2.http.Query
 interface ApiUser {
     @Headers("user-key: ddbd4d09f67bd39cc8d20b84e6834f1f")
     @GET("api/v2.1/search")
-    fun getRestaurants(@Query("entity_id") entityId:String,
-                       @Query("entity_type") entityType:String,
-                       @Query("q")q:String) : Call<BaseModel1>
+    fun getRestaurants(
+        @Query("entity_id") entityId: String,
+        @Query("entity_type") entityType: String,
+        @Query("q") q: String
+    ): Call<BaseModel1>
 }

@@ -9,22 +9,19 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ApiUserRestClient:Activity() {
+class ApiUserRestClient : Activity() {
     companion object {
         val instance = ApiUserRestClient()
     }
 
     var mApiUser: ApiUser? = null
 
-    fun getRestaurantDetails(query:String,retrofitEventListener: RetrofitEventListener){
+    fun getRestaurantDetails(query: String, retrofitEventListener: RetrofitEventListener) {
         val retrofit = NetworkClient.retrofitClient
         mApiUser = retrofit.create<ApiUser>(ApiUser::class.java)
 
-        val entityid = "11332"
-        val entityType = "city"
-
-        val apiUserCall = mApiUser?.getRestaurants("11332","city",query)
-        Log.d("ApiUserRestClient","$apiUserCall")
+        val apiUserCall = mApiUser?.getRestaurants("11332", "city", query)
+        Log.d("ApiUserRestClient", "$apiUserCall")
         apiUserCall?.enqueue(object : Callback<BaseModel1> {
 
             override fun onResponse(

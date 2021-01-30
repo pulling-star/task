@@ -13,12 +13,14 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.zomatoapp.R
 import com.example.zomatoapp.model.RestaurantModel
 
-class RestaurantAdapter(private val context: Context,private val list:List<RestaurantModel>):
+class RestaurantAdapter(private val context: Context, private val list: List<RestaurantModel>) :
     RecyclerView.Adapter<RestaurantAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(
-            R.layout.restaurant_list_layout, parent,false)
+        return ViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.restaurant_list_layout, parent, false
+            )
         )
     }
 
@@ -40,11 +42,15 @@ class RestaurantAdapter(private val context: Context,private val list:List<Resta
         val timings = data.restaurant.timings
         val avgCost = data.restaurant.average_cost_for_two
         val address = data.restaurant.location.address
-        holder.itemView.setOnClickListener(object:View.OnClickListener{
+        holder.itemView.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                v?.findNavController()?.navigate(RestaurantFragmentDirections
-                    .actionRestaurantFragmentToRestaurantDetailFragment(resImage,resName,
-                        resCuisines,locality,rating,timings,avgCost,address))
+                v?.findNavController()?.navigate(
+                    RestaurantFragmentDirections
+                        .actionRestaurantFragmentToRestaurantDetailFragment(
+                            resImage, resName,
+                            resCuisines, locality, rating, timings, avgCost, address
+                        )
+                )
             }
 
         })
@@ -54,10 +60,10 @@ class RestaurantAdapter(private val context: Context,private val list:List<Resta
         return list.size
     }
 
-    class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val restaurantImageView = itemView.findViewById<ImageView>(R.id.restaurantImageView)
-        val restaurantTitle= itemView.findViewById<TextView>(R.id.restaurantTitle)
+        val restaurantTitle = itemView.findViewById<TextView>(R.id.restaurantTitle)
         val restaurantRating = itemView.findViewById<TextView>(R.id.restaurantRating)
-        val restaurantLocation= itemView.findViewById<TextView>(R.id.restaurantLocation)
+        val restaurantLocation = itemView.findViewById<TextView>(R.id.restaurantLocation)
     }
 }

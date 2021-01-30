@@ -20,8 +20,9 @@ class RestaurantFragment : Fragment() {
     companion object {
         const val TAG = "RestaurantFragment"
     }
-    lateinit var restaurantRecyclerViewList:RecyclerView
-    lateinit var searchRestaurantEditText:SearchView
+
+    lateinit var restaurantRecyclerViewList: RecyclerView
+    lateinit var searchRestaurantEditText: SearchView
     lateinit var restaurantFragmentViewModel: RestaurantFragmentViewModel
 
     override fun onCreateView(
@@ -45,11 +46,13 @@ class RestaurantFragment : Fragment() {
         searchRestaurantEditText.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
-                    Log.d(TAG,"query = $query")
-                    restaurantFragmentViewModel.CallSearchRestaurantApi(query)
-                    restaurantFragmentViewModel.livedataRestaurantSearch.observe(viewLifecycleOwner, Observer {
-                        setRecyclerView(it.restaurants)
-                    })
+                    Log.d(TAG, "query = $query")
+                    restaurantFragmentViewModel.callSearchRestaurantApi(query)
+                    restaurantFragmentViewModel.livedataRestaurantSearch.observe(
+                        viewLifecycleOwner,
+                        Observer {
+                            setRecyclerView(it.restaurants)
+                        })
                 }
                 return false
             }
