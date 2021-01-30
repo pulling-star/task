@@ -9,5 +9,37 @@
         android:id="@+id/restaurantFragment"
         android:name="com.example.zomatoapp.restaurants.RestaurantFragment"
         android:label="fragment_restaurant"
-        tools:layout="@layout/fragment_restaurant" />
+        tools:layout="@layout/fragment_restaurant" >
+        <action
+            android:id="@+id/action_restaurantFragment_to_restaurantDetailFragment"
+            app:destination="@id/restaurantDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/restaurantDetailFragment"
+        android:name="com.example.zomatoapp.restaurantdetail.RestaurantDetailFragment"
+        android:label="RestaurantDetailFragment" >
+        <argument android:name="resImage"
+            app:argType="string" />
+        <argument
+            android:name="resName"
+            app:argType="string" />
+        <argument
+            android:name="resCuisines"
+            app:argType="string" />
+        <argument
+            android:name="locality"
+            app:argType="string" />
+        <argument
+            android:name="rating"
+            app:argType="string" />
+        <argument
+            android:name="timings"
+            app:argType="string" />
+        <argument
+            android:name="avgCost"
+            app:argType="long" />
+        <argument
+            android:name="address"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.zomatoapp.R
-import com.example.zomatoapp.model.BaseModel1
 import com.example.zomatoapp.model.RestaurantModel
 
 class RestaurantAdapter(private val context: Context,private val list:List<RestaurantModel>):
@@ -32,6 +32,22 @@ class RestaurantAdapter(private val context: Context,private val list:List<Resta
         holder.restaurantTitle.text = data.restaurant.name
         holder.restaurantRating.text = data.restaurant.user_rating.aggregate_rating
         holder.restaurantLocation.text = data.restaurant.location.locality
+        val resImage = data.restaurant.featured_image
+        val resName = data.restaurant.name
+        val resCuisines = data.restaurant.cuisines
+        val locality = data.restaurant.location.locality_verbose
+        val rating = data.restaurant.user_rating.aggregate_rating
+        val timings = data.restaurant.timings
+        val avgCost = data.restaurant.average_cost_for_two
+        val address = data.restaurant.location.address
+        holder.itemView.setOnClickListener(object:View.OnClickListener{
+            override fun onClick(v: View?) {
+                v?.findNavController()?.navigate(RestaurantFragmentDirections
+                    .actionRestaurantFragmentToRestaurantDetailFragment(resImage,resName,
+                        resCuisines,locality,rating,timings,avgCost,address))
+            }
+
+        })
     }
 
     override fun getItemCount(): Int {
