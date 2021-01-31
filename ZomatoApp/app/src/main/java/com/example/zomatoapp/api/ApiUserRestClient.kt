@@ -3,6 +3,7 @@ package com.example.zomatoapp.api
 import android.app.Activity
 import android.util.Log
 import com.example.zomatoapp.model.BaseModel1
+import com.example.zomatoapp.model.BaseModel2
 import com.example.zomatoapp.network.NetworkClient
 import com.example.zomatoapp.network.RetrofitEventListener
 import retrofit2.Call
@@ -16,11 +17,36 @@ class ApiUserRestClient : Activity() {
 
     var mApiUser: ApiUser? = null
 
-    fun getRestaurantDetails(query: String, retrofitEventListener: RetrofitEventListener) {
+    fun getLocationDetails(query: String, retrofitEventListener: RetrofitEventListener) {
         val retrofit = NetworkClient.retrofitClient
         mApiUser = retrofit.create<ApiUser>(ApiUser::class.java)
 
-        val apiUserCall = mApiUser?.getRestaurants("11332", "city", query)
+        val apiUserCall = mApiUser?.getLocation(query)
+        Log.d("ApiUserRestClient", "$apiUserCall")
+        apiUserCall?.enqueue(object : Callback<BaseModel2> {
+
+            override fun onResponse(
+                call: Call<BaseModel2>?,
+                response: Response<BaseModel2>?
+            ) {
+
+                if (response?.body() != null) {
+                    retrofitEventListener.onSuccess(call, response.body())
+                }
+            }
+
+            override fun onFailure(call: Call<BaseModel2>?, t: Throwable?) {
+
+                retrofitEventListener.onError(call, t)
+            }
+        })
+    }
+
+    fun getRestaurantDetails(entityId:String, query: String, retrofitEventListener: RetrofitEventListener) {
+        val retrofit = NetworkClient.retrofitClient
+        mApiUser = retrofit.create<ApiUser>(ApiUser::class.java)
+
+        val apiUserCall = mApiUser?.getRestaurants(entityId, "city", query)
         Log.d("ApiUserRestClient", "$apiUserCall")
         apiUserCall?.enqueue(object : Callback<BaseModel1> {
 

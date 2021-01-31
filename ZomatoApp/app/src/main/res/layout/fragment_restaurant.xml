@@ -7,12 +7,22 @@
     tools:context=".restaurants.RestaurantFragment"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.SearchView
+    <EditText
         android:id="@+id/searchRestaurantEditText"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:drawableStart="@drawable/ic_search_black_24px"
+        android:hint="Enter Restaurant name here"
+        android:layout_marginStart="14dp"
+        android:padding="8dp"
+        app:iconifiedByDefault="false"
+        />
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchLocationSearchEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/ic_search_black_24px"
-        app:queryHint="Search Restaurant here"
+        app:queryHint="Enter Location here"
         app:iconifiedByDefault="false"
         />
     <!-- TODO: Update blank fragment layout -->
