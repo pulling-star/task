@@ -25,10 +25,30 @@
         app:queryHint="Enter Location here"
         app:iconifiedByDefault="false"
         />
-    <!-- TODO: Update blank fragment layout -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/restaurantRecyclerViewList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <Button
+        android:id="@+id/nearByResButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get NearBy Restaurants"
+        android:textSize="12sp"
+        android:alpha="0.7"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        tools:ignore="HardcodedText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

@@ -1,13 +1,24 @@
 package com.example.zomatoapp.restaurants
 
 import android.Manifest
+import android.app.Activity
+import android.content.Context
+import android.content.pm.PackageManager
+import android.location.Geocoder
+import android.location.Location
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,10 +26,15 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zomatoapp.R
+import com.example.zomatoapp.model.NearByRestaurant
 import com.example.zomatoapp.model.RestaurantModel
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
-import pub.devrel.easypermissions.AfterPermissionGranted
-import pub.devrel.easypermissions.EasyPermissions
+import okio.IOException
+import java.util.*
 
 
 class RestaurantFragment : Fragment() {
@@ -30,8 +46,9 @@ class RestaurantFragment : Fragment() {
     lateinit var restaurantRecyclerViewList: RecyclerView
     lateinit var searchLocationSearchEditText: SearchView
     lateinit var restaurantFragmentViewModel: RestaurantFragmentViewModel
-    lateinit var searchRestaurantEditText:EditText
-
+    lateinit var searchRestaurantEditText: EditText
+    lateinit var client: FusedLocationProviderClient
+    lateinit var nearByResButton: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +56,7 @@ class RestaurantFragment : Fragment() {
     ): View? {
         restaurantFragmentViewModel = ViewModelProvider(this)
             .get(RestaurantFragmentViewModel::class.java)
+        client = LocationServices.getFusedLocationProviderClient(this.requireContext())
         return inflater.inflate(R.layout.fragment_restaurant, container, false)
     }
 
@@ -47,12 +65,12 @@ class RestaurantFragment : Fragment() {
         restaurantRecyclerViewList = view.findViewById(R.id.restaurantRecyclerViewList)
         searchLocationSearchEditText = view.findViewById(R.id.searchLocationSearchEditText)
         searchRestaurantEditText = view.findViewById(R.id.searchRestaurantEditText)
+        nearByResButton = view.findViewById(R.id.nearByResButton)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         requestLocationPermission()
-
         searchLocationSearchEditText.setOnQueryTextListener(object :
             SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -79,9 +97,7 @@ class RestaurantFragment : Fragment() {
                                     ).show()
                                 }
                             }
-
                         })
-
                 }
                 return false
             }
@@ -93,6 +109,104 @@ class RestaurantFragment : Fragment() {
         })
     }
 
+    private fun requestLocationPermission() {
+        if (ActivityCompat.checkSelfPermission(
+                this.requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+            == PackageManager.PERMISSION_GRANTED
+        ) {
+            nearByResButton.visibility = View.GONE
+            client.lastLocation.addOnCompleteListener(object : OnCompleteListener<Location> {
+                override fun onComplete(task: Task<Location>) {
+                    val location = task.getResult()
+                    if (location != null) {
+                        try {
+                            val geocoder = Geocoder(context, Locale.getDefault())
+                            val address = geocoder.getFromLocation(
+                                location.latitude, location.longitude, 1
+                            )
+                            Log.d(TAG, "${address.get(0).latitude}")
+                            Log.d(TAG, "${address.get(0).longitude}")
+                            restaurantFragmentViewModel
+                                .callNearByRestaurantApi(
+                                    address[0].latitude.toString(),
+                                    address[0].longitude.toString()
+                                )
+                            restaurantFragmentViewModel.liveDataNearByResSearch.observe(
+                                viewLifecycleOwner,
+                                Observer {
+                                    setRecyclerView1(it.nearby_restaurants)
+                                })
+                        } catch (e: IOException) {
+                            e.printStackTrace()
+                        }
+                    }
+                }
+
+            })
+        } else {
+            ActivityCompat.requestPermissions(
+                this.requireActivity(),
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 44
+            )
+            nearByResButton.setOnClickListener(object : View.OnClickListener {
+                override fun onClick(view: View) {
+                    nearByResButton.visibility = View.GONE
+                    if (context?.let {
+                            ActivityCompat.checkSelfPermission(
+                                it,
+                                Manifest.permission.ACCESS_FINE_LOCATION
+                            )
+                        }
+                        == PackageManager.PERMISSION_GRANTED) {
+
+                        client.lastLocation.addOnCompleteListener(object :
+                            OnCompleteListener<Location> {
+                            override fun onComplete(task: Task<Location>) {
+                                val location = task.getResult()
+                                if (location != null) {
+                                    try {
+                                        val geocoder = Geocoder(context, Locale.getDefault())
+                                        val address = geocoder.getFromLocation(
+                                            location.latitude, location.longitude, 1
+                                        )
+                                        Log.d(TAG, "${address.get(0).latitude}")
+                                        Log.d(TAG, "${address.get(0).longitude}")
+                                        restaurantFragmentViewModel
+                                            .callNearByRestaurantApi(
+                                                address[0].latitude.toString(),
+                                                address[0].longitude.toString()
+                                            )
+                                        restaurantFragmentViewModel.liveDataNearByResSearch.observe(
+                                            viewLifecycleOwner,
+                                            Observer {
+                                                setRecyclerView1(it.nearby_restaurants)
+                                            })
+                                    } catch (e: IOException) {
+                                        e.printStackTrace()
+                                    }
+                                }
+                            }
+
+                        })
+                    }
+                }
+
+            })
+
+        }
+    }
+
+    private fun setRecyclerView1(list: List<NearByRestaurant>) {
+        val mAdapter = RestaurantAdapter1(this.requireContext(), list)
+        val mLayoutManager = LinearLayoutManager(this.requireContext())
+        restaurantRecyclerViewList.layoutManager = mLayoutManager
+        mLayoutManager.orientation = RecyclerView.VERTICAL
+        restaurantRecyclerViewList.itemAnimator = DefaultItemAnimator()
+        restaurantRecyclerViewList.adapter = mAdapter
+    }
+
     private fun setRecyclerView(list: List<RestaurantModel>) {
         val mAdapter = RestaurantAdapter(this.requireContext(), list)
         val mLayoutManager = LinearLayoutManager(this.requireContext())
@@ -101,41 +215,5 @@ class RestaurantFragment : Fragment() {
         restaurantRecyclerViewList.itemAnimator = DefaultItemAnimator()
         restaurantRecyclerViewList.adapter = mAdapter
     }
-
-//    override fun onRequestPermissionsResult(
-//        requestCode: Int,
-//        permissions: Array<String?>?,
-//        grantResults: IntArray?
-//    ) {
-//        super.onRequestPermissionsResult(requestCode, permissions!!, grantResults!!)
-//
-//        // Forward results to EasyPermissions
-//        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
-//    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
-    }
-
-    @AfterPermissionGranted(REQUEST_LOCATION_PERMISSION)
-    fun requestLocationPermission() {
-        val perms = (Manifest.permission.ACCESS_FINE_LOCATION)
-        if (EasyPermissions.hasPermissions(this.requireContext(), perms)) {
-//            Toast.makeText(this, "Permission already granted", Toast.LENGTH_SHORT).show()
-        } else {
-            EasyPermissions.requestPermissions(
-                this,
-                "Please grant the location permission",
-                REQUEST_LOCATION_PERMISSION,
-                perms
-            )
-        }
-    }
-
 
 }

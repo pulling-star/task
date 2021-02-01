@@ -19,9 +19,9 @@ class RestaurantDetailFragment : Fragment() {
     lateinit var cuisines:TextView
     lateinit var localityVerbose:TextView
     lateinit var rating:TextView
-    lateinit var timings:TextView
     lateinit var avgCost:TextView
     lateinit var address:TextView
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -36,7 +36,6 @@ class RestaurantDetailFragment : Fragment() {
         cuisines = view.findViewById(R.id.cuisines)
         localityVerbose =view.findViewById(R.id.localityVerbose)
         rating = view.findViewById(R.id.rating)
-        timings = view.findViewById(R.id.timings)
         avgCost = view.findViewById(R.id.avgCost)
         address = view.findViewById(R.id.address)
     }
@@ -52,7 +51,6 @@ class RestaurantDetailFragment : Fragment() {
         cuisines.text = formatCuisines(args.resCuisines)
         localityVerbose.text = args.locality
         rating.text = formatRating(args.rating)
-        timings.text = formatTimings(args.timings)
         avgCost.text = formatCost(args.avgCost.toString())
         address.text =args.address
     }

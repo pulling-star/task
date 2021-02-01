@@ -34,9 +34,6 @@
             android:name="rating"
             app:argType="string" />
         <argument
-            android:name="timings"
-            app:argType="string" />
-        <argument
             android:name="avgCost"
             app:argType="long" />
         <argument

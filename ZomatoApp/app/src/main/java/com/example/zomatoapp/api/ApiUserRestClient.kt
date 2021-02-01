@@ -4,6 +4,7 @@ import android.app.Activity
 import android.util.Log
 import com.example.zomatoapp.model.BaseModel1
 import com.example.zomatoapp.model.BaseModel2
+import com.example.zomatoapp.model.BaseModel3
 import com.example.zomatoapp.network.NetworkClient
 import com.example.zomatoapp.network.RetrofitEventListener
 import retrofit2.Call
@@ -42,7 +43,11 @@ class ApiUserRestClient : Activity() {
         })
     }
 
-    fun getRestaurantDetails(entityId:String, query: String, retrofitEventListener: RetrofitEventListener) {
+    fun getRestaurantDetails(
+        entityId: String,
+        query: String,
+        retrofitEventListener: RetrofitEventListener
+    ) {
         val retrofit = NetworkClient.retrofitClient
         mApiUser = retrofit.create<ApiUser>(ApiUser::class.java)
 
@@ -61,6 +66,35 @@ class ApiUserRestClient : Activity() {
             }
 
             override fun onFailure(call: Call<BaseModel1>?, t: Throwable?) {
+
+                retrofitEventListener.onError(call, t)
+            }
+        })
+    }
+
+    fun getNearByRestaurantDetails(
+        lat: String,
+        lon: String,
+        retrofitEventListener: RetrofitEventListener
+    ) {
+        val retrofit = NetworkClient.retrofitClient
+        mApiUser = retrofit.create<ApiUser>(ApiUser::class.java)
+
+        val apiUserCall = mApiUser?.getNearByRestaurants(lat, lon)
+        Log.d("ApiUserRestClient", "$apiUserCall")
+        apiUserCall?.enqueue(object : Callback<BaseModel3> {
+
+            override fun onResponse(
+                call: Call<BaseModel3>?,
+                response: Response<BaseModel3>?
+            ) {
+
+                if (response?.body() != null) {
+                    retrofitEventListener.onSuccess(call, response.body())
+                }
+            }
+
+            override fun onFailure(call: Call<BaseModel3>?, t: Throwable?) {
 
                 retrofitEventListener.onError(call, t)
             }
