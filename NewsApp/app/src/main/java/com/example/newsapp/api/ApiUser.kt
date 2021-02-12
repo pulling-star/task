@@ -9,4 +9,5 @@ interface ApiUser {
 
     @GET("v2/top-headlines?q=india&apiKey=a1f616c6388a4a74ad396c4e42caaff8")
     fun getNews(@Query("q") q:String, @Query("apiKey") apiKey:String): Call<BaseModel>
+
 }
