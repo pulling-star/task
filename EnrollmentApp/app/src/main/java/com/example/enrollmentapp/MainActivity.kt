@@ -35,5 +35,8 @@ class MainActivity : AppCompatActivity() {
 
             }
         })
+        val fragmentTransaction = getSupportFragmentManager()?.beginTransaction()
+        fragmentTransaction?.replace(R.id.viewPager,EnrollFragment())
+            ?.commit()
     }
 }

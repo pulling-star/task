@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp">
+    <ImageView
+        android:id="@+id/profilePicture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@color/black"/>
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/cardView"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="20dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:text="Mohammed Tariq"/>
+    <TextView
+        android:id="@+id/userGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/userName"
+        app:layout_constraintTop_toBottomOf="@id/userName"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        tools:text="Male"/>
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="1dp"
+        android:layout_height="25dp"
+        android:background="@color/black"
+        app:layout_constraintStart_toEndOf="@id/userGender"
+        app:layout_constraintTop_toBottomOf="@id/userName"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="8dp"/>
+
+    <TextView
+        android:id="@+id/userDOB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/line1"
+        app:layout_constraintTop_toTopOf="@id/userGender"
+        android:textSize="16sp"
+        android:layout_marginStart="8dp"
+        android:textStyle="normal"
+        tools:text="27/08/1997"/>
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="1dp"
+        android:layout_height="25dp"
+        android:background="@color/black"
+        app:layout_constraintStart_toEndOf="@id/userDOB"
+        app:layout_constraintTop_toBottomOf="@id/userName"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="8dp"/>
+
+    <TextView
+        android:id="@+id/userLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/line2"
+        app:layout_constraintTop_toTopOf="@id/userGender"
+        android:textSize="16sp"
+        android:layout_marginStart="8dp"
+        android:textStyle="normal"
+        tools:text="Trichy"/>
+
+    <View
+        android:id="@+id/line3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="10dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
