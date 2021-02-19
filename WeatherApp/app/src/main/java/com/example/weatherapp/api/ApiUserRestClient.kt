@@ -17,11 +17,11 @@ class ApiUserRestClient:Activity() {
 
     var mApiUser: ApiUser? = null
 
-    fun getWeatherDetails(retrofitEventListener: RetrofitEventListener){
+    fun getWeatherDetails(lat:String,lon:String,retrofitEventListener: RetrofitEventListener){
         val retrofit = NetworkClient.retrofitClient
         mApiUser = retrofit.create<ApiUser>(ApiUser::class.java)
 
-        val apiUserCall = mApiUser?.getWeather()
+        val apiUserCall = mApiUser?.getWeather(lat,lon,"minutely","c8388944e2520aa17b43da2e294ed346")
         Log.d("MainActivity","$apiUserCall")
         apiUserCall?.enqueue(object : Callback<BaseModel> {
 

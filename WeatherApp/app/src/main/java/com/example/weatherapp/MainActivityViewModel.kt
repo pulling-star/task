@@ -12,8 +12,8 @@ import retrofit2.Call
 class MainActivityViewModel:ViewModel() {
     val liveDataWeather = MutableLiveData<BaseModel>()
 
-    fun CallWeatherApi(){
-        ApiUserRestClient.instance.getWeatherDetails(object:RetrofitEventListener{
+    fun CallWeatherApi(lat:String,lon:String){
+        ApiUserRestClient.instance.getWeatherDetails(lat,lon,object:RetrofitEventListener{
             override fun onSuccess(call: Call<*>?, response: Any?) {
                 if(response is BaseModel){
                     liveDataWeather.value = response.copy()

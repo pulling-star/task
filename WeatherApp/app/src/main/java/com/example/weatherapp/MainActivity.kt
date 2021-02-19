@@ -1,9 +1,20 @@
 package com.example.weatherapp
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.location.Geocoder
+import android.location.Location
+import com.google.android.gms.location.*
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -11,16 +22,23 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.model.BaseModel
 import com.example.weatherapp.model.Daily
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.tasks.OnCompleteListener
 import com.jjoe64.graphview.DefaultLabelFormatter
 import com.jjoe64.graphview.GraphView
-import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
+import okhttp3.internal.concurrent.Task
+import okio.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        const val TAG = "MainActivity"
+        const val REQUEST_LOCATION_PERMISSION = 1
+    }
 
     lateinit var dateTimeTextView:TextView
     lateinit var temperatureTextView:TextView
@@ -30,14 +48,21 @@ class MainActivity : AppCompatActivity() {
     lateinit var weatherForecast_list_RecyclerView:RecyclerView
     lateinit var backdropImage:ImageView
     lateinit var lineGraph:GraphView
-    lateinit var lineSeries:LineGraphSeries<DataPoint>
+    private lateinit var client: FusedLocationProviderClient
+    lateinit var geocoder:Geocoder
+    lateinit var lat:String
+    lateinit var lon:String
 
+
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        client = LocationServices.getFusedLocationProviderClient(this)
         bindviews()
-        mainActivityViewModel.CallWeatherApi()
+        requestLocationPermission()
+
         mainActivityViewModel.liveDataWeather.observe(this, Observer {
             dateTimeTextView.text = dateTimeFormat(it.current.dt)
             temperatureTextView.text = tempFormat(it.current.temp)
@@ -47,6 +72,87 @@ class MainActivity : AppCompatActivity() {
             setGraphVIew(it)
         })
 
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun requestLocationPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            client.lastLocation.addOnCompleteListener(object : OnCompleteListener<Location> {
+                override fun onComplete(task: com.google.android.gms.tasks.Task<Location>) {
+                    val location = task.result
+                    if (location != null) {
+                        try {
+                            val geocoder = Geocoder(this@MainActivity, Locale.getDefault())
+                            val address = geocoder.getFromLocation(
+                                    location.latitude, location.longitude, 1
+                            )
+                            lat = address[0].latitude.toString()
+                            lon = address[0].longitude.toString()
+                            Log.d(TAG,"lat=$lat,lon=$lon")
+                            mainActivityViewModel.CallWeatherApi(lat,lon)
+
+                        } catch (e: IOException) {
+                            e.printStackTrace()
+                        }
+                    }
+
+                }
+
+            })
+        }else{
+            requestPermissions(
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                    REQUEST_LOCATION_PERMISSION
+            )
+        }
+
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode){
+            REQUEST_LOCATION_PERMISSION ->{
+                if ((grantResults.isNotEmpty() &&
+                            grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                ){
+                    if (ActivityCompat.checkSelfPermission(
+                            this,
+                            Manifest.permission.ACCESS_FINE_LOCATION
+                        ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                            this,
+                            Manifest.permission.ACCESS_COARSE_LOCATION
+                        ) != PackageManager.PERMISSION_GRANTED
+                    ) {
+                        return
+                    }
+                    client.lastLocation.addOnCompleteListener(object : OnCompleteListener<Location> {
+                        override fun onComplete(task: com.google.android.gms.tasks.Task<Location>) {
+                            val location = task.result
+                            if (location != null) {
+                                try {
+                                    val geocoder = Geocoder(this@MainActivity, Locale.getDefault())
+                                    val address = geocoder.getFromLocation(
+                                            location.latitude, location.longitude, 1
+                                    )
+                                    lat = address[0].latitude.toString()
+                                    lon = address[0].longitude.toString()
+                                    mainActivityViewModel.CallWeatherApi(lat,lon)
+
+                                } catch (e: IOException) {
+                                    e.printStackTrace()
+                                }
+                            }
+
+                        }
+
+                    })
+                }
+                return
+            }else->{
+
+            }
+        }
     }
 
     private fun tempFormat(temp: Double): String {
