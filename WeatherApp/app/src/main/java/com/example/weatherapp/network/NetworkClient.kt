@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object NetworkClient {
-    private val BASE_URL = "http://api.openweathermap.org/"
+    private val BASE_URL = "https://api.openweathermap.org/"
     private val TIMEOUT = 10
     var retrofit: Retrofit? = null
 

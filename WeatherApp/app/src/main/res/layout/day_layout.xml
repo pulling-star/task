@@ -1,49 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/white">
+
     <TextView
         android:id="@+id/dateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Friday,29"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Friday,29" />
+
     <TextView
         android:id="@+id/minTempTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="34°C"
-        android:textSize="18sp"
+        android:layout_marginEnd="2dp"
         android:textColor="#00bcff"
-        android:layout_marginEnd="90dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/dateTextView"/>
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@id/barTextView"
+        app:layout_constraintTop_toTopOf="@id/dateTextView"
+        tools:text="34°C" />
 
     <TextView
         android:id="@+id/barTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="/"
+        android:layout_marginEnd="2dp"
         android:textSize="18sp"
-        android:layout_marginEnd="80dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/dateTextView"/>
+        app:layout_constraintEnd_toStartOf="@id/maxTempTextView"
+        app:layout_constraintTop_toTopOf="@id/dateTextView"
+        android:text="@string/seperation_slash" />
 
     <TextView
         android:id="@+id/maxTempTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="37°C"
+        android:layout_marginEnd="45dp"
         android:textColor="#daa520"
         android:textSize="18sp"
-        android:layout_marginEnd="45dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/dateTextView"/>
+        app:layout_constraintTop_toTopOf="@id/dateTextView"
+        tools:text="37°C" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
