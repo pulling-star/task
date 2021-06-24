@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.mapdemoapp.adapter.ViewPagerAdapter
 import com.example.mapdemoapp.databinding.ActivityMainBinding
+import com.example.mapdemoapp.model.EndModel
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
@@ -16,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding:ActivityMainBinding
 
     val list = arrayOf("Marker List","Map")
+    var latLngList = ArrayList<LatLng>()
+    var latLngname = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
