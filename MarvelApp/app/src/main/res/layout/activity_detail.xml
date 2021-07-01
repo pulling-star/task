@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/heroImage"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="fitXY"
+            tools:src = "@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:layout_marginVertical="8dp"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            tools:text = "Marvel"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/heroImage"
+            />
+
+        <TextView
+            android:id="@+id/realNameTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="4dp"
+            android:text="Real Name"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginStart="12dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <TextView
+            android:id="@+id/realName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            tools:text="Steve Rogers"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/realNameTitle"
+            app:layout_constraintTop_toBottomOf="@id/realNameTitle" />
+
+        <TextView
+            android:id="@+id/bioTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="4dp"
+            android:text="Bio"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/realNameTitle"
+            app:layout_constraintTop_toBottomOf="@id/realName" />
+
+        <TextView
+            android:id="@+id/bio"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:padding="4dp"
+            tools:text="Hello anyone there"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/bioTitle"
+            app:layout_constraintTop_toBottomOf="@id/bioTitle"
+            />
+
+        <TextView
+            android:id="@+id/teamTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="4dp"
+            android:text="Team"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/realNameTitle"
+            app:layout_constraintTop_toBottomOf="@id/bio" />
+
+        <TextView
+            android:id="@+id/team"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            tools:text="Avengers"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/realNameTitle"
+            app:layout_constraintTop_toBottomOf="@id/teamTitle" />
+
+        <TextView
+            android:id="@+id/firstappearanceTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="4dp"
+            android:text="Firstappearance"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/realNameTitle"
+            app:layout_constraintTop_toBottomOf="@id/team" />
+
+        <TextView
+            android:id="@+id/firstappearance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            tools:text = "1941"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/realNameTitle"
+            app:layout_constraintTop_toBottomOf="@id/firstappearanceTitle" />
+
+        <TextView
+            android:id="@+id/createdbyTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="4dp"
+            android:text="Created by"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/realNameTitle"
+            app:layout_constraintTop_toBottomOf="@id/firstappearance" />
+
+        <TextView
+            android:id="@+id/createdby"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            tools:text="English"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/realNameTitle"
+            app:layout_constraintTop_toBottomOf="@id/createdbyTitle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
