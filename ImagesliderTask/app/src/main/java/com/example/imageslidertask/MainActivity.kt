@@ -13,10 +13,11 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var imagesArray: Array<String>
+    var imagesArray = ArrayList<String>()
     private var currentPage = 0
     private lateinit var slidingImageDots: Array<ImageView?>
     private var slidingDotsCount = 0
+    var imagesUrlArray  = ArrayList<String>()
     lateinit var binding: ActivityMainBinding
 
     private val slidingCallback = object : ViewPager2.OnPageChangeCallback() {
@@ -43,12 +44,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        imagesUrlArray.add("https://cdn.pixabay.com/photo/2020/02/13/10/29/bees-4845211__340.jpg")
+        imagesUrlArray.add("https://cdn.pixabay.com/photo/2020/04/24/08/57/street-5085971__340.jpg")
+        imagesUrlArray.add("https://cdn.pixabay.com/photo/2020/03/11/01/53/landscape-4920705__340.jpg")
+        imagesUrlArray.add("https://cdn.pixabay.com/photo/2020/02/11/12/07/portofino-4839356__340.jpg")
         setUpSlidingViewPager()
     }
 
     private fun setUpSlidingViewPager() {
-        imagesArray = resources.getStringArray(R.array.image_urls_array)
+        imagesArray = imagesUrlArray
 
         val landingImagesAdapter = ViewPagerAdapter(this, imagesArray.size)
         binding.slidingViewPager.apply {
