@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.countryapp.R
 import com.example.countryapp.adapter.CountryAdapter
 import com.example.countryapp.model.BaseModel
+import com.example.countryapp.repository.CountryRepo
 import com.example.countryapp.viewmodel.MainActivityViewModel
+import com.example.countryapp.viewmodel.ViewModelFactory
 
 class MainActivity : AppCompatActivity() {
     lateinit var countryRecyclerView:RecyclerView
@@ -22,7 +24,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+
+        val repo = CountryRepo()
+        mainActivityViewModel = ViewModelProvider(this,ViewModelFactory(repo))
+            .get(MainActivityViewModel::class.java)
         bindViews()
         mainActivityViewModel.callCountriesApi()
         mainActivityViewModel.liveDataCountries.observe(this, Observer {
