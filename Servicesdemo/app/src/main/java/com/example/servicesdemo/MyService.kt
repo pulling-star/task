@@ -1,5 +1,6 @@
 package com.example.servicesdemo
 
+import android.app.IntentService
 import android.app.Service
 import android.content.Intent
 import android.os.Binder
@@ -8,7 +9,7 @@ import android.util.Log
 import java.util.*
 
 
-class MyService:Service() {
+class MyService:IntentService("threadNew") {
 
     companion object{
         const val TAG = "MyService"
@@ -26,19 +27,19 @@ class MyService:Service() {
 
     private val mBinder:IBinder = MyServiceBinder()
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Log.d(TAG, "onStartCommand Called")
-
-        Log.i(TAG, "My Service thread: " + Thread.currentThread().id)
-        isRandomGeneratorOn = true
-        Thread(object : Runnable {
-            override fun run() {
-                startRandomNumberGenerator()
-            }
-
-        }).start()
-        return START_STICKY
-    }
+//    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+//        Log.d(TAG, "onStartCommand Called")
+//
+//        Log.i(TAG, "My Service thread: " + Thread.currentThread().id)
+//        isRandomGeneratorOn = true
+//        Thread(object : Runnable {
+//            override fun run() {
+//                startRandomNumberGenerator()
+//            }
+//
+//        }).start()
+//        return START_STICKY
+//    }
 
     private fun startRandomNumberGenerator() {
         while (isRandomGeneratorOn) {
@@ -79,5 +80,10 @@ class MyService:Service() {
         Log.i(TAG, "In onUnbind")
         return super.onUnbind(intent)
 
+    }
+
+    override fun onHandleIntent(intent: Intent?) {
+        isRandomGeneratorOn = true
+        startRandomNumberGenerator()
     }
 }
