@@ -1,5 +1,7 @@
 package com.example.servicesdemo
 
+import android.app.job.JobInfo
+import android.app.job.JobScheduler
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -15,76 +17,47 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var binding:ActivityMainBinding
     lateinit var serviceIntent : Intent
-
-    private var myService: MyService? = null
-    private var isServiceBound = false
-    private var serviceConnection: ServiceConnection? = null
-    var count =0
+    lateinit var jobScheduler: JobScheduler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        jobScheduler = getSystemService(JOB_SCHEDULER_SERVICE) as JobScheduler
+
         Log.i(MyService.TAG, "MainActivity thread: " + Thread.currentThread().id)
 
         serviceIntent = Intent(this, MyService::class.java)
 
         binding.button.setOnClickListener {
-            serviceIntent.putExtra("starter","starter ${++count}")
-            MyService.enqueueWork(this,serviceIntent)
+            startJob()
         }
 
         binding.button2.setOnClickListener {
-            stopService(serviceIntent)
+            stopJob()
         }
 
-//        binding.buttonBindService.setOnClickListener {
-//            bindService()
-//        }
-//
-//        binding.buttonUnBindService.setOnClickListener {
-//            unBindService()
-//        }
-//
-//        binding.buttonGetRandomNumber.setOnClickListener {
-//            setRandomNumber()
-//        }
     }
 
-//    private fun unBindService() {
-//        if(isServiceBound){
-//            serviceConnection?.let { unbindService(it) }
-//            isServiceBound=false;
-//        }
-//    }
-//
-//    private fun bindService() {
-//        if (serviceConnection == null) {
-//            serviceConnection = object : ServiceConnection {
-//                override fun onServiceConnected(componentName: ComponentName, iBinder: IBinder) {
-//                    val myServiceBinder = iBinder as MyServiceBinder
-//                    myService = myServiceBinder.service
-//                    isServiceBound = true
-//                }
-//
-//                override fun onServiceDisconnected(componentName: ComponentName) {
-//                    isServiceBound = false
-//                }
-//            }
-//        }
-//        bindService(
-//            Intent(this, MyService::class.java),
-//            serviceConnection!!,
-//            Context.BIND_AUTO_CREATE
-//        )
-//    }
-//
-//    private fun setRandomNumber() {
-//        if (isServiceBound) {
-//            binding.textViewthreadCount.setText("Random number: " + myService?.getRandomNumber())
-//        } else {
-//            binding.textViewthreadCount.setText("Service not bound")
-//        }
-//    }
+    private fun startJob() {
+        val componentName = ComponentName(this,MyService::class.java)
+        val jobInfo = JobInfo.Builder(101,componentName)
+            .setRequiredNetworkType(JobInfo.NETWORK_TYPE_CELLULAR)
+            .setPeriodic(15*60*1000)
+            .setRequiresCharging(false)
+            .setPersisted(true)
+            .build()
+
+        if(jobScheduler.schedule(jobInfo) == JobScheduler.RESULT_SUCCESS){
+            Log.i(MyService.TAG, "MainActivity thread: " + Thread.currentThread().id + ", Job successfully scheduled")
+        }else{
+            Log.i(MyService.TAG, "MainActivity thread: " + Thread.currentThread().id + ", Job could not be scheduled")
+        }
+    }
+
+    private fun stopJob() {
+        jobScheduler.cancel(101)
+    }
+
 }
