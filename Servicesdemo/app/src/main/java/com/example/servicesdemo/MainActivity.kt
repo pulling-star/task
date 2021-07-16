@@ -8,17 +8,18 @@ import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.servicesdemo.MyService.MyServiceBinder
 import com.example.servicesdemo.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding:ActivityMainBinding
+    lateinit var serviceIntent : Intent
 
     private var myService: MyService? = null
     private var isServiceBound = false
     private var serviceConnection: ServiceConnection? = null
+    var count =0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,60 +28,63 @@ class MainActivity : AppCompatActivity() {
 
         Log.i(MyService.TAG, "MainActivity thread: " + Thread.currentThread().id)
 
+        serviceIntent = Intent(this, MyService::class.java)
+
         binding.button.setOnClickListener {
-            startService(Intent(this, MyService::class.java))
+            serviceIntent.putExtra("starter","starter ${++count}")
+            MyService.enqueueWork(this,serviceIntent)
         }
 
         binding.button2.setOnClickListener {
-            stopService(Intent(this, MyService::class.java))
+            stopService(serviceIntent)
         }
 
-        binding.buttonBindService.setOnClickListener {
-            bindService()
-        }
-
-        binding.buttonUnBindService.setOnClickListener {
-            unBindService()
-        }
-        
-        binding.buttonGetRandomNumber.setOnClickListener {
-            setRandomNumber()
-        }
+//        binding.buttonBindService.setOnClickListener {
+//            bindService()
+//        }
+//
+//        binding.buttonUnBindService.setOnClickListener {
+//            unBindService()
+//        }
+//
+//        binding.buttonGetRandomNumber.setOnClickListener {
+//            setRandomNumber()
+//        }
     }
 
-    private fun unBindService() {
-        if(isServiceBound){
-            serviceConnection?.let { unbindService(it) }
-            isServiceBound=false;
-        }
-    }
-
-    private fun bindService() {
-        if (serviceConnection == null) {
-            serviceConnection = object : ServiceConnection {
-                override fun onServiceConnected(componentName: ComponentName, iBinder: IBinder) {
-                    val myServiceBinder = iBinder as MyServiceBinder
-                    myService = myServiceBinder.service
-                    isServiceBound = true
-                }
-
-                override fun onServiceDisconnected(componentName: ComponentName) {
-                    isServiceBound = false
-                }
-            }
-        }
-        bindService(
-            Intent(this, MyService::class.java),
-            serviceConnection!!,
-            Context.BIND_AUTO_CREATE
-        )
-    }
-
-    private fun setRandomNumber() {
-        if (isServiceBound) {
-            binding.textViewthreadCount.setText("Random number: " + myService?.getRandomNumber())
-        } else {
-            binding.textViewthreadCount.setText("Service not bound")
-        }
-    }
+//    private fun unBindService() {
+//        if(isServiceBound){
+//            serviceConnection?.let { unbindService(it) }
+//            isServiceBound=false;
+//        }
+//    }
+//
+//    private fun bindService() {
+//        if (serviceConnection == null) {
+//            serviceConnection = object : ServiceConnection {
+//                override fun onServiceConnected(componentName: ComponentName, iBinder: IBinder) {
+//                    val myServiceBinder = iBinder as MyServiceBinder
+//                    myService = myServiceBinder.service
+//                    isServiceBound = true
+//                }
+//
+//                override fun onServiceDisconnected(componentName: ComponentName) {
+//                    isServiceBound = false
+//                }
+//            }
+//        }
+//        bindService(
+//            Intent(this, MyService::class.java),
+//            serviceConnection!!,
+//            Context.BIND_AUTO_CREATE
+//        )
+//    }
+//
+//    private fun setRandomNumber() {
+//        if (isServiceBound) {
+//            binding.textViewthreadCount.setText("Random number: " + myService?.getRandomNumber())
+//        } else {
+//            binding.textViewthreadCount.setText("Service not bound")
+//        }
+//    }
 }
