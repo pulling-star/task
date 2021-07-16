@@ -16,6 +16,7 @@ class MyService: JobService() {
         const val TAG = "MyService"
     }
 
+    var jobParameters: JobParameters? = null
     private var randomNumber = 0;
     private var isRandomGeneratorOn = false
     private val MIN = 0
@@ -23,6 +24,7 @@ class MyService: JobService() {
 
     override fun onStartJob(params: JobParameters?): Boolean {
         Log.i(TAG, "OnSTartJob")
+        jobParameters = params
         doBackgroundWork()
         return true
     }
@@ -43,19 +45,22 @@ class MyService: JobService() {
 
 
     private fun startRandomNumberGenerator() {
-        while (isRandomGeneratorOn) {
+        var counter = 0
+        while (counter<5) {
             try {
                 Thread.sleep(1000)
                 if(isRandomGeneratorOn){
                     randomNumber = Random().nextInt(MAX) + MIN
-                    Log.i(TAG, "Thread id: " + Thread.currentThread().id + ", Random Number: " + randomNumber)
+                    Log.i(TAG, "Thread id: " + Thread.currentThread().id + ", Random Number: " + randomNumber +
+                    ", jobId: "+jobParameters?.jobId)
                 }
 
             } catch (e: InterruptedException) {
                 Log.i(TAG, "Thread Interrupted")
             }
+            counter++
         }
-
+        this.jobFinished(jobParameters,true)
     }
 
     override fun onDestroy() {
