@@ -8,7 +8,7 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import java.util.*
 
-class RandomNumberGenerator(context: Context, workerParams: WorkerParameters) :
+class RandomNumberGenerator1(context: Context, workerParams: WorkerParameters) :
     Worker(context, workerParams) {
 
     private var randomNumber = 0;
@@ -27,7 +27,7 @@ class RandomNumberGenerator(context: Context, workerParams: WorkerParameters) :
                 if(isRandomGeneratorOn){
                     randomNumber = Random().nextInt(MAX) + MIN
                     Log.i(
-                        MyService.TAG, "Thread id: " + Thread.currentThread().id + ", Random Number: " + randomNumber)
+                        MyService.TAG, "Worker1 Thread id: " + Thread.currentThread().id + ", Random Number: " + randomNumber)
                     counter++
                 }
 
