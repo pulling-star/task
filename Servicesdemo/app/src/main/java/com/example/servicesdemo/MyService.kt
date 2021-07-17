@@ -46,7 +46,7 @@ class MyService: JobService() {
 
     private fun startRandomNumberGenerator() {
         var counter = 0
-        while (counter<5) {
+        while (counter<5 && isStopped()) {
             try {
                 Thread.sleep(1000)
                 if(isRandomGeneratorOn){

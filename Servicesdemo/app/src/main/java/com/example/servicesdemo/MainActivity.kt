@@ -10,7 +10,11 @@ import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
+import androidx.work.WorkRequest
 import com.example.servicesdemo.databinding.ActivityMainBinding
+import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,46 +22,30 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding:ActivityMainBinding
     lateinit var serviceIntent : Intent
     lateinit var jobScheduler: JobScheduler
+    lateinit var workManager: WorkManager
+    lateinit var workRequest: WorkRequest
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        jobScheduler = getSystemService(JOB_SCHEDULER_SERVICE) as JobScheduler
+        workManager = WorkManager.getInstance(applicationContext)
+        workRequest = PeriodicWorkRequest
+            .Builder(RandomNumberGenerator::class.java,15,TimeUnit.MINUTES).build()
 
         Log.i(MyService.TAG, "MainActivity thread: " + Thread.currentThread().id)
 
         serviceIntent = Intent(this, MyService::class.java)
 
         binding.button.setOnClickListener {
-            startJob()
+            workManager.enqueue(workRequest)
         }
 
         binding.button2.setOnClickListener {
-            stopJob()
+            workManager.cancelWorkById(workRequest.id)
         }
 
-    }
-
-    private fun startJob() {
-        val componentName = ComponentName(this,MyService::class.java)
-        val jobInfo = JobInfo.Builder(101,componentName)
-            .setRequiredNetworkType(JobInfo.NETWORK_TYPE_CELLULAR)
-            .setPeriodic(15*60*1000)
-            .setRequiresCharging(false)
-            .setPersisted(true)
-            .build()
-
-        if(jobScheduler.schedule(jobInfo) == JobScheduler.RESULT_SUCCESS){
-            Log.i(MyService.TAG, "MainActivity thread: " + Thread.currentThread().id + ", Job successfully scheduled")
-        }else{
-            Log.i(MyService.TAG, "MainActivity thread: " + Thread.currentThread().id + ", Job could not be scheduled")
-        }
-    }
-
-    private fun stopJob() {
-        jobScheduler.cancel(101)
     }
 
 }
