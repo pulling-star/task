@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_image_available">No image available</string>
+    <string name="selfie">Selfie</string>
+    <string name="gallery">Gallery</string>
+</resources>

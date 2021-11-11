@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PhotoEditorApp</string>
+    <string name="no_image_available">No image available</string>
+    <string name="selfie">Selfie</string>
+    <string name="gallery">Gallery</string>
+    <string name="take_photo">Take photo</string>
+</resources>
