@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MapRoute App</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="no_image_available">No image available</string>
+    <string name="destination">Destination</string>
+    <string name="source">Source</string>
+    <string name="cafe_coffee_day_electronic_city_bengaluru">Coffee day,Electronic city,Bengaluru</string>
+    <string name="hinders_pinging_bats1">///hinders,pinging,bats</string>
+    <string name="hinders_pinging_bats">///camps,submerge,shipping</string>
+    <string name="hbpr_layout_madiwala_bengaluru">HBPR,Layout,Madiwala,Bengaluru</string>
+</resources>

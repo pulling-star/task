@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F1F1"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/source_destination_cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/source_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_source_dot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:contentDescription="@string/no_image_available"
+                    android:src="@drawable/ic_baseline_circle_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tv_source_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_source_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:paddingVertical="2dp"
+                    android:text="@string/source"
+                    app:layout_constraintEnd_toStartOf="@id/iv_source_favourite"
+                    app:layout_constraintStart_toEndOf="@id/iv_source_dot"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_source"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="2dp"
+                    android:text="@string/hbpr_layout_madiwala_bengaluru"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/iv_source_favourite"
+                    app:layout_constraintStart_toStartOf="@id/tv_source_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_source_title" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_source_tags"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="2dp"
+                    android:text="@string/hinders_pinging_bats1"
+                    android:textColor="@android:color/holo_orange_dark"
+                    app:layout_constraintEnd_toStartOf="@id/iv_source_favourite"
+                    app:layout_constraintStart_toStartOf="@id/tv_source_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_source" />
+
+                <ImageView
+                    android:id="@+id/iv_source_favourite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="@string/no_image_available"
+                    android:src="@drawable/ic_baseline_favorite_border_24"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_source_tags"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_source"
+                    app:layout_constraintTop_toTopOf="@id/tv_source_title" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/destination_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp">
+
+                <ImageView
+                    android:id="@+id/iv_destination_dot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:contentDescription="@string/no_image_available"
+                    android:src="@drawable/ic_baseline_circle_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tv_destination_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_destination_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:paddingVertical="2dp"
+                    android:text="@string/destination"
+                    app:layout_constraintEnd_toStartOf="@id/iv_destination_favourite"
+                    app:layout_constraintStart_toEndOf="@id/iv_destination_dot"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_destination"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="2dp"
+                    android:text="@string/cafe_coffee_day_electronic_city_bengaluru"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/iv_destination_favourite"
+                    app:layout_constraintStart_toStartOf="@id/tv_destination_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_destination_title" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_destination_tags"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="2dp"
+                    android:text="@string/hinders_pinging_bats"
+                    android:textColor="@android:color/holo_orange_dark"
+                    app:layout_constraintEnd_toStartOf="@id/iv_destination_favourite"
+                    app:layout_constraintStart_toStartOf="@id/tv_destination_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_destination" />
+
+                <ImageView
+                    android:id="@+id/iv_destination_favourite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="@string/no_image_available"
+                    android:src="@drawable/ic_baseline_favorite_border_24"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_destination_tags"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_destination"
+                    app:layout_constraintTop_toTopOf="@id/tv_destination_title" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/iv_metro_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintEnd_toStartOf="@id/iv_bus_card"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/source_destination_cardView">
+
+        <ImageView
+            android:id="@+id/iv_metro"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/no_image_available"
+            android:src="@drawable/ic_baseline_train_24" />
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/iv_bus_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:cardCornerRadius="25dp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_metro_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_metro_card"
+        app:layout_constraintTop_toTopOf="@id/iv_metro_card">
+
+        <ImageView
+            android:id="@+id/iv_bus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/no_image_available"
+            android:src="@drawable/ic_baseline_directions_bus_filled_24" />
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
