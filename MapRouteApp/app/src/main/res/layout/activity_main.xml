@@ -55,7 +55,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:paddingVertical="2dp"
-                    android:text="@string/hbpr_layout_madiwala_bengaluru"
+                    android:text="@string/address_bangalore"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -159,43 +159,121 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/iv_metro_card"
+    <LinearLayout
+        android:id="@+id/metro_linear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        app:cardCornerRadius="15dp"
-        app:layout_constraintEnd_toStartOf="@id/iv_bus_card"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@id/bus_linear"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/source_destination_cardView">
 
-        <ImageView
-            android:id="@+id/iv_metro"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:contentDescription="@string/no_image_available"
-            android:src="@drawable/ic_baseline_train_24" />
-    </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/iv_metro_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="23dp">
 
+            <ImageView
+                android:id="@+id/iv_metro"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="8dp"
+                android:contentDescription="@string/no_image_available"
+                android:src="@drawable/ic_baseline_train_24" />
+        </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/iv_bus_card"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_metro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:layout_marginStart="6dp"
+            android:paddingVertical="2dp"
+            android:text="@string/metro"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bus_linear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        app:cardCornerRadius="25dp"
-        app:layout_constraintBottom_toBottomOf="@id/iv_metro_card"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/iv_metro_card"
-        app:layout_constraintTop_toTopOf="@id/iv_metro_card">
+        app:layout_constraintStart_toEndOf="@id/metro_linear"
+        app:layout_constraintTop_toTopOf="@+id/metro_linear">
 
-        <ImageView
-            android:id="@+id/iv_bus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:contentDescription="@string/no_image_available"
-            android:src="@drawable/ic_baseline_directions_bus_filled_24" />
-    </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/iv_bus_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            app:cardCornerRadius="23dp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_metro_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_metro_card"
+            app:layout_constraintTop_toTopOf="@id/iv_metro_card">
 
+            <ImageView
+                android:id="@+id/iv_bus"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="8dp"
+                android:contentDescription="@string/no_image_available"
+                android:src="@drawable/ic_baseline_directions_bus_filled_24" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_bus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:layout_marginStart="6dp"
+            android:paddingVertical="2dp"
+            android:text="@string/bus"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_route_heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/fastest_route"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/metro_linear" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/routes_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_route_heading" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/iv_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:contentDescription="@string/no_image_available"
+        android:src="@drawable/ic_baseline_filter_alt_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
