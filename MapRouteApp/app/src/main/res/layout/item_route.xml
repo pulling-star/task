@@ -1,22 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_source_title"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginStart="10dp"
-        android:drawableStart="@drawable/ic_baseline_info_24"
-        android:drawablePadding="4dp"
-        android:paddingVertical="2dp"
-        android:text="@string/report"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:paddingBottom="14dp">
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_source_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:drawableStart="@drawable/ic_baseline_info_24"
+            android:drawablePadding="4dp"
+            android:paddingVertical="2dp"
+            android:text="@string/report"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_next_scheduled_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="80dp"
+            android:paddingVertical="2dp"
+            android:text="@string/next_scheduled"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/tv_estimated_price_heading"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_next_scheduled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="2dp"
+            android:textColor="@android:color/holo_green_light"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@id/tv_next_scheduled_heading"
+            app:layout_constraintTop_toBottomOf="@id/tv_next_scheduled_heading"
+            tools:text="12:48pm" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_estimated_price_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:paddingVertical="2dp"
+            android:text="@string/estimated_price"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/tv_travel_time_heading"
+            app:layout_constraintStart_toEndOf="@id/tv_next_scheduled_heading"
+            app:layout_constraintTop_toTopOf="@id/tv_next_scheduled_heading" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_estimated_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="2dp"
+            android:textColor="@android:color/holo_green_light"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@id/tv_estimated_price_heading"
+            app:layout_constraintTop_toBottomOf="@id/tv_estimated_price_heading"
+            tools:text="$20" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_travel_time_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:paddingVertical="2dp"
+            android:text="@string/travel_time"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/tv_distance_heading"
+            app:layout_constraintStart_toEndOf="@id/tv_estimated_price_heading"
+            app:layout_constraintTop_toTopOf="@id/tv_estimated_price_heading" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_travel_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="2dp"
+            android:textColor="@android:color/holo_green_light"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@id/tv_travel_time_heading"
+            app:layout_constraintTop_toBottomOf="@id/tv_travel_time_heading"
+            tools:text="20mins" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_distance_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="15dp"
+            android:paddingVertical="2dp"
+            android:text="@string/distance"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_travel_time_heading"
+            app:layout_constraintTop_toTopOf="@id/tv_travel_time_heading" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="2dp"
+            android:textColor="@android:color/holo_green_light"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@id/tv_distance_heading"
+            app:layout_constraintTop_toBottomOf="@id/tv_distance_heading"
+            tools:text="45km" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

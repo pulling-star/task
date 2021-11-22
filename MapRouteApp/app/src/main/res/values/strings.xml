@@ -12,4 +12,8 @@
     <string name="metro">Metro</string>
     <string name="bus">Bus</string>
     <string name="report">Report</string>
+    <string name="next_scheduled">NEXT SCHEDULED</string>
+    <string name="estimated_price">ESTIMATED PRICE</string>
+    <string name="travel_time">TRAVEL TIME</string>
+    <string name="distance">DISTANCE</string>
 </resources>
