@@ -1,11 +1,13 @@
 package com.example.maprouteapp.adapter
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.maprouteapp.OnItemClickListener
 import com.example.maprouteapp.R
@@ -16,7 +18,7 @@ import com.example.maprouteapp.ui.MainActivity
 import com.example.maprouteapp.ui.MapsActivity
 import com.google.android.material.textview.MaterialTextView
 
-class RouteAdapter(private val dataList:MutableList<BaseModelItem>,private val activity:MainActivity):RecyclerView.Adapter<RouteAdapter.ViewHolder>() {
+class RouteAdapter(private val dataList:MutableList<BaseModelItem>,private val ctx:Context):RecyclerView.Adapter<RouteAdapter.ViewHolder>() {
 
     class ViewHolder(var _binding: ItemRouteBinding) : RecyclerView.ViewHolder(_binding.root)
 
@@ -35,9 +37,13 @@ class RouteAdapter(private val dataList:MutableList<BaseModelItem>,private val a
         holder.itemView.setOnClickListener{
             val args = Bundle()
             args.putSerializable("data", element)
-            val intent = Intent(activity,MapsActivity::class.java)
+            val intent = Intent(ctx,MapsActivity::class.java)
             intent.putExtra("data",element)
-            activity.startActivity(intent)
+            ctx.startActivity(intent)
+        }
+        when(position){
+            1 -> holder._binding.bar3.setBackgroundColor(ContextCompat.getColor(ctx,R.color.orange))
+            2 -> holder._binding.bar3.setBackgroundColor(ContextCompat.getColor(ctx,R.color.green))
         }
     }
 

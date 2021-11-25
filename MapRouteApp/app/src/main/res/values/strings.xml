@@ -12,8 +12,19 @@
     <string name="metro">Metro</string>
     <string name="bus">Bus</string>
     <string name="report">Report</string>
-    <string name="next_scheduled">NEXT SCHEDULED</string>
     <string name="estimated_price">ESTIMATED PRICE</string>
     <string name="travel_time">TRAVEL TIME</string>
     <string name="distance">DISTANCE</string>
+    <string name="api_key">AIzaSyBwfPZTY0kY_bQHZSskQI5SGdyxxqOjhCc</string>
+    <string name="_06_minS">06 mins</string>
+    <string name="bus_route_name">SHD44</string>
+    <string name="_234m">234 Mtr</string>
+    <string name="next_scheduled">NEXT SCHEDULED:</string>
+    <string name="_12_00pm">12:00 PM</string>
+    <string name="_12_50pm">12:50 PM</string>
+    <string name="get_in_station">Get in station</string>
+    <string name="get_down_station">Get down station</string>
+    <string name="sett_22">SETT-22</string>
+    <string name="cs_corporation_bank">CS-Corporation bank kamanahii</string>
+    <string name="address_route2_getDown">CS-St.Joseph Boys high school Museum Road</string>
 </resources>

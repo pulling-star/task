@@ -14,7 +14,7 @@
         android:paddingBottom="14dp">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_source_title"
+            android:id="@+id/tv_report"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -26,19 +26,283 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <LinearLayout
+            android:id="@+id/bar_root_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="15dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_report">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/bar1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="#656284" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="10dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="10dp">
+
+                    <ImageView
+                        android:id="@+id/bar1Image"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_margin="4dp"
+                        android:contentDescription="@string/no_image_available"
+                        android:src="@drawable/ic_baseline_directions_walk_24" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/bar2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="#F7F556" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="10dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="10dp">
+
+                    <ImageView
+                        android:id="@+id/bar2Image"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_margin="4dp"
+                        android:contentDescription="@string/no_image_available"
+                        android:src="@drawable/ic_baseline_train_24" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/bar3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="#CF62C1" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="10dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="10dp">
+
+                    <ImageView
+                        android:id="@+id/bar3Image"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_margin="4dp"
+                        android:contentDescription="@string/no_image_available"
+                        android:src="@drawable/ic_baseline_directions_bus_24" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/bar4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:background="#656284" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="10dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="10dp">
+
+                    <ImageView
+                        android:id="@+id/bar4Image"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_margin="4dp"
+                        android:contentDescription="@string/no_image_available"
+                        android:src="@drawable/ic_baseline_directions_walk_24" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_way_1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="8dp"
+            android:contentDescription="@string/no_image_available"
+            android:src="@drawable/ic_baseline_directions_walk_24"
+            app:layout_constraintEnd_toStartOf="@id/tv_way_1"
+            app:layout_constraintStart_toStartOf="@id/bar_root_linear"
+            app:layout_constraintTop_toBottomOf="@id/bar_root_linear" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_way_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_06_minS"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/iv_way_1"
+            app:layout_constraintStart_toEndOf="@id/iv_way_1"
+            app:layout_constraintTop_toTopOf="@id/iv_way_1" />
+
+        <ImageView
+            android:id="@+id/iv_arrow_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/no_image_available"
+            android:src="@drawable/ic_baseline_arrow_right_alt_24"
+            app:layout_constraintBottom_toBottomOf="@id/tv_way_1"
+            app:layout_constraintStart_toEndOf="@id/tv_way_1"
+            app:layout_constraintTop_toTopOf="@id/tv_way_1" />
+
+        <ImageView
+            android:id="@+id/iv_way_2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginHorizontal="4dp"
+            android:contentDescription="@string/no_image_available"
+            android:src="@drawable/ic_baseline_train_24"
+            app:layout_constraintEnd_toStartOf="@id/tv_way_2"
+            app:layout_constraintStart_toEndOf="@id/iv_arrow_1"
+            app:layout_constraintTop_toTopOf="@id/iv_way_1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_way_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bus_route_name"
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/iv_way_2"
+            app:layout_constraintStart_toEndOf="@id/iv_way_2"
+            app:layout_constraintTop_toTopOf="@id/iv_way_2" />
+
+        <ImageView
+            android:id="@+id/iv_arrow_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/no_image_available"
+            android:src="@drawable/ic_baseline_arrow_right_alt_24"
+            app:layout_constraintBottom_toBottomOf="@id/tv_way_2"
+            app:layout_constraintStart_toEndOf="@id/tv_way_2"
+            app:layout_constraintTop_toTopOf="@id/tv_way_2" />
+
+        <ImageView
+            android:id="@+id/iv_way_3"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginHorizontal="4dp"
+            android:contentDescription="@string/no_image_available"
+            android:src="@drawable/ic_baseline_directions_bus_24"
+            app:layout_constraintEnd_toStartOf="@id/tv_way_3"
+            app:layout_constraintStart_toEndOf="@id/iv_arrow_2"
+            app:layout_constraintTop_toTopOf="@id/iv_way_2" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_way_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bus_route_name"
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/iv_way_3"
+            app:layout_constraintStart_toEndOf="@id/iv_way_3"
+            app:layout_constraintTop_toTopOf="@id/iv_way_3" />
+
+        <ImageView
+            android:id="@+id/iv_arrow_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/no_image_available"
+            android:src="@drawable/ic_baseline_arrow_right_alt_24"
+            app:layout_constraintBottom_toBottomOf="@id/tv_way_3"
+            app:layout_constraintStart_toEndOf="@id/tv_way_3"
+            app:layout_constraintTop_toTopOf="@id/tv_way_3" />
+
+        <ImageView
+            android:id="@+id/iv_way_4"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginHorizontal="4dp"
+            android:contentDescription="@string/no_image_available"
+            android:src="@drawable/ic_baseline_directions_walk_24"
+            app:layout_constraintEnd_toStartOf="@id/tv_way_4"
+            app:layout_constraintStart_toEndOf="@id/iv_arrow_3"
+            app:layout_constraintTop_toTopOf="@id/iv_way_3" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_way_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_06_minS"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/iv_way_4"
+            app:layout_constraintStart_toEndOf="@id/iv_way_4"
+            app:layout_constraintTop_toTopOf="@id/iv_way_4" />
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_next_scheduled_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="20dp"
             android:paddingVertical="2dp"
             android:text="@string/next_scheduled"
             android:textSize="11sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/tv_estimated_price_heading"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_way_1" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_next_scheduled"
@@ -97,7 +361,7 @@
             android:textSize="11sp"
             app:layout_constraintStart_toStartOf="@id/tv_travel_time_heading"
             app:layout_constraintTop_toBottomOf="@id/tv_travel_time_heading"
-            tools:text="20mins" />
+            tools:text="20minS" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_distance_heading"
@@ -123,6 +387,16 @@
             app:layout_constraintStart_toStartOf="@id/tv_distance_heading"
             app:layout_constraintTop_toBottomOf="@id/tv_distance_heading"
             tools:text="45km" />
+
+        <ImageView
+            android:id="@+id/iv_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/no_image_available"
+            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_distance_heading"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
