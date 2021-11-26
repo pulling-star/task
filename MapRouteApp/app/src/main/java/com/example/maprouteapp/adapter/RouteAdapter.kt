@@ -1,5 +1,7 @@
 package com.example.maprouteapp.adapter
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -18,12 +20,13 @@ import com.example.maprouteapp.ui.MainActivity
 import com.example.maprouteapp.ui.MapsActivity
 import com.google.android.material.textview.MaterialTextView
 
-class RouteAdapter(private val dataList:MutableList<BaseModelItem>,private val ctx:Context):RecyclerView.Adapter<RouteAdapter.ViewHolder>() {
+class RouteAdapter(private val dataList: MutableList<BaseModelItem>, private val ctx: Context) :
+    RecyclerView.Adapter<RouteAdapter.ViewHolder>() {
 
     class ViewHolder(var _binding: ItemRouteBinding) : RecyclerView.ViewHolder(_binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(ItemRouteBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return ViewHolder(ItemRouteBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -34,16 +37,16 @@ class RouteAdapter(private val dataList:MutableList<BaseModelItem>,private val c
             tvTravelTime.text = element.totalDuration
             tvDistance.text = "${element.totalDistance}km"
         }
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             val args = Bundle()
             args.putSerializable("data", element)
-            val intent = Intent(ctx,MapsActivity::class.java)
-            intent.putExtra("data",element)
+            val intent = Intent(ctx, MapsActivity::class.java)
+            intent.putExtra("data", element)
             ctx.startActivity(intent)
         }
-        when(position){
-            1 -> holder._binding.bar3.setBackgroundColor(ContextCompat.getColor(ctx,R.color.orange))
-            2 -> holder._binding.bar3.setBackgroundColor(ContextCompat.getColor(ctx,R.color.green))
+        when (position) {
+            1 -> holder._binding.bar3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.orange))
+            2 -> holder._binding.bar3.setBackgroundColor(ContextCompat.getColor(ctx, R.color.green))
         }
     }
 
