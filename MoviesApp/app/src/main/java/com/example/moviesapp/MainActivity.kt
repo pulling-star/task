@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.example.moviesapp.adapter.MovieAdapter
 import com.example.moviesapp.adapter.SliderAdapter
 import com.example.moviesapp.databinding.ActivityMainBinding
 import com.example.moviesapp.helpers.HorizontalMarginItemDecoration
@@ -25,8 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var sliderItemlist: ArrayList<SliderItem>
     private lateinit var sliderAdapter: SliderAdapter
-//    private lateinit var sliderHandler: Handler
-//    private lateinit var sliderRun: Runnable
+    private lateinit var movieAdapter: MovieAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpViewPagerandAdapter() {
         sliderItemlist = ArrayList()
-        sliderAdapter = SliderAdapter(_binding.viewPager,sliderItemlist)
+        sliderAdapter = SliderAdapter(sliderItemlist)
         _binding.viewPager.adapter = sliderAdapter
         _binding.viewPager.clipToPadding = false
         _binding.viewPager.clipChildren = false
@@ -66,6 +67,9 @@ class MainActivity : AppCompatActivity() {
         }
         _binding.viewPager.setPageTransformer(comPosPageTarn)
 
+        movieAdapter = MovieAdapter(sliderItemlist)
+        _binding.movieRecycler.layoutManager = GridLayoutManager(this,3)
+        _binding.movieRecycler.adapter = movieAdapter
     }
 
 }
