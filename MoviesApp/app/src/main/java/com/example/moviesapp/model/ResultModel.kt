@@ -2,9 +2,10 @@ package com.example.moviesapp.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 import java.util.ArrayList
 
-data class ResultModel (
+data class ResultModel(
     @SerializedName("adult")
     @Expose
     val adult: Boolean,
@@ -47,4 +48,4 @@ data class ResultModel (
     @SerializedName("vote_count")
     @Expose
     val voteCount: Int
-        )
+) : Serializable

@@ -1,5 +1,5 @@
 package com.example.moviesapp.model
 
 data class SliderItem(
-    val image:Int
+    val image: String
 )

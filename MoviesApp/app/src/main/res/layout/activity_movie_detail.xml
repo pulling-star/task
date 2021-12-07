@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="200dp"
+        tools:context=".MovieDetailActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_movie_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#3B7E91"
+            android:paddingBottom="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cv_movie_image"
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="40dp"
+                app:cardElevation="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_movie_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_movie_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_launcher_background" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_movie_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cv_movie_image"
+                app:layout_constraintTop_toTopOf="@id/cv_movie_image"
+                tools:text="Wonder woman" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_adult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toStartOf="@id/bar"
+                app:layout_constraintStart_toStartOf="@id/tv_movie_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_movie_title"
+                tools:text="U+" />
+
+            <View
+                android:id="@+id/bar"
+                android:layout_width="1dp"
+                android:layout_height="15dp"
+                android:layout_marginHorizontal="4dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/tv_adult"
+                app:layout_constraintEnd_toStartOf="@id/tv_date"
+                app:layout_constraintStart_toEndOf="@id/tv_adult"
+                app:layout_constraintTop_toTopOf="@id/tv_adult" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/tv_adult"
+                app:layout_constraintStart_toEndOf="@id/bar"
+                app:layout_constraintTop_toTopOf="@id/tv_adult"
+                tools:text="2021-09-03" />
+
+
+            <RatingBar
+                android:id="@+id/rating_bar"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:rating="5"
+                app:layout_constraintBottom_toTopOf="@id/tv_voted_title"
+                app:layout_constraintEnd_toStartOf="@id/tv_rating"
+                app:layout_constraintStart_toStartOf="@id/tv_movie_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_adult" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_rating"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/rating_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/rating_bar"
+                app:layout_constraintTop_toTopOf="@id/rating_bar"
+                tools:text="5" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_voted_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/voted_users"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/cv_movie_image"
+                app:layout_constraintStart_toStartOf="@id/rating_bar"
+                app:layout_constraintTop_toBottomOf="@id/rating_bar" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_voted_users"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/tv_voted_title"
+                app:layout_constraintStart_toEndOf="@id/tv_voted_title"
+                app:layout_constraintTop_toTopOf="@id/tv_voted_title"
+                tools:text="4565" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/invisible_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/cl_movie_detail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:paddingHorizontal="10dp"
+            android:text="@string/book_now"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_blue_dark"
+            app:layout_constraintBottom_toBottomOf="@id/invisible_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/invisible_view" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_movie_desc_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="40dp"
+            android:padding="4dp"
+            android:text="@string/synopsis"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_movie_detail" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_movie_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:lineSpacingMultiplier="2"
+            android:padding="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_desc_title"
+            tools:text="@string/synopsis" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

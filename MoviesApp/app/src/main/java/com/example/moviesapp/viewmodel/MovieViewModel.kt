@@ -1,29 +1,29 @@
 package com.example.moviesapp.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.moviesapp.model.BaseModel
 import com.example.moviesapp.network.RetrofitClient
 import com.example.moviesapp.utils.Constants
-import retrofit2.Retrofit
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
 
 class MovieViewModel(application: Application) : AndroidViewModel(application) {
 
-    fun getInvoice(invoiceBody: InvoiceBody): LiveData<ApiResult<*>> {
-//        val mutableLiveData = MutableLiveData<ApiResult<*>>()
-//        mutableLiveData.postValue(ApiResult.InProgress)
-        try {
-            viewModelScope.launch {
-                withContext(IO) {
-                    RetrofitClient.instance.getMovieResults(Constants.API_KEY,1).generateResponse(mutableLiveData, langResource)
+    fun getMoviesList(pageCount: Int): LiveData<BaseModel> {
+        val mutableLiveData = MutableLiveData<BaseModel>()
+        viewModelScope.launch {
+            withContext(IO) {
+                val response = RetrofitClient.instance.getMovieResults(Constants.API_KEY, pageCount)
+                when {
+                    response.isSuccessful -> mutableLiveData.postValue(response.body())
                 }
             }
-        } catch (e: Exception) {
-            Log.e("InvoiceData: ", e.message.orEmpty())
-            mutableLiveData.postValue(ApiResult.Failure(e))
         }
         return mutableLiveData
     }

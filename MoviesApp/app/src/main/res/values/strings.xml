@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">MoviesApp</string>
     <string name="now_showing">Now showing</string>
+    <string name="voted_users">Voted users: </string>
+    <string name="synopsis">Synopsis</string>
+    <string name="book_now">Book Now</string>
+    <string name="search">Search</string>
 </resources>

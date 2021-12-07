@@ -2,9 +2,10 @@ package com.example.moviesapp.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 import java.util.ArrayList
 
-data class BaseModel (
+data class BaseModel(
     @SerializedName("page")
     @Expose
     val page: String,
@@ -17,4 +18,4 @@ data class BaseModel (
     @SerializedName("results")
     @Expose
     val results: ArrayList<ResultModel>
-        )
+) : Serializable

@@ -9,8 +9,9 @@ import retrofit2.http.Url
 interface Api {
 
     @GET("discover/movie")
-    suspend fun getMovieResults(@Query("api_key") apiKey: String,
-                                @Query("page") page: Int
+    suspend fun getMovieResults(
+        @Query("api_key") apiKey: String,
+        @Query("page") page: Int
     ): Response<BaseModel>
 
 }
