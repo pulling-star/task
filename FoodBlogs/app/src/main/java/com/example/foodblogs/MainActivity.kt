@@ -2,8 +2,9 @@ package com.example.foodblogs
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.ImageView
+import androidx.viewpager2.widget.ViewPager2
 import com.example.foodblogs.adapter.SliderAdapter
 import com.example.foodblogs.databinding.ActivityMainBinding
 import com.example.foodblogs.model.BaseResponse
@@ -34,6 +35,32 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         _binding.bottomSheetBlogDetail.viewPager.adapter = _sliderAdapter
         setOnClickListeners()
         getFoodDetailsFromApi()
+        _binding.bottomSheetBlogDetail.viewPager.registerOnPageChangeCallback(viewPagerCallBack)
+    }
+
+    private val viewPagerCallBack = object : ViewPager2.OnPageChangeCallback(){
+        override fun onPageSelected(position: Int) {
+            when(position){
+                0 -> updateDotUI(dotOne = true,dotTwo = false,dotThree = false,dotFour = false)
+                1 -> updateDotUI(dotOne = false,dotTwo = true,dotThree = false,dotFour = false)
+                2 -> updateDotUI(dotOne = false,dotTwo = false,dotThree = true,dotFour = false)
+                3 -> updateDotUI(dotOne = false,dotTwo = false,dotThree = false,dotFour = true)
+            }
+        }
+    }
+
+    private fun updateDotUI(dotOne:Boolean,dotTwo:Boolean,dotThree:Boolean,dotFour:Boolean){
+        setImageUI(dotOne,_binding.bottomSheetBlogDetail.ivDot1)
+        setImageUI(dotTwo,_binding.bottomSheetBlogDetail.ivDot2)
+        setImageUI(dotThree,_binding.bottomSheetBlogDetail.ivDot3)
+        setImageUI(dotFour,_binding.bottomSheetBlogDetail.ivDot4)
+    }
+
+    private fun setImageUI(dotAction: Boolean,imageView:ImageView) {
+        when(dotAction){
+            true -> imageView.setImageResource(R.drawable.ic_baseline_circle_24_black)
+            false -> imageView.setImageResource(R.drawable.ic_baseline_circle_24)
+        }
     }
 
     private fun setOnClickListeners() {
@@ -48,7 +75,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     when(it.data){
                         is BaseResponse -> {
                             val data = it.data.data
-                            Log.d("mainAct",data.toString())
                             val sortedCardList = sortByCardNo(data.card)
                             _binding.apply {
                                 tvCardHeading2.text = data.card_details.title +" " + data.card_details.city
@@ -83,12 +109,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         when(v.id){
             R.id.cv_dashboard -> {
                 _detailBlogBehaviour.state = BottomSheetBehavior.STATE_EXPANDED
-                setUpAdapter()
+                _sliderAdapter.updateList(sliderImageList)
+
             }
         }
     }
 
-    private fun setUpAdapter() {
-        _sliderAdapter.updateList(sliderImageList)
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding.bottomSheetBlogDetail.viewPager.unregisterOnPageChangeCallback(viewPagerCallBack)
     }
+
 }

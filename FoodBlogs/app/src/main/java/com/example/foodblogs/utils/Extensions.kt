@@ -1,5 +1,7 @@
 package com.example.foodblogs.utils
 
+import android.os.Build
+import android.text.Html
 import android.view.View
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
@@ -20,5 +22,14 @@ object Extensions {
         val snackBar = Snackbar.make(view, text, Snackbar.LENGTH_SHORT)
         snackBar.setBackgroundTint(ContextCompat.getColor(view.context, android.R.color.holo_red_dark))
         snackBar.show()
+    }
+
+    fun String?.forHtmlText(): String {
+        return when {
+            this != null -> when{
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.N -> Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT).toString()
+                else -> Html.fromHtml(this).toString()
+            } else -> ""
+        }
     }
 }

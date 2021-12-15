@@ -5,9 +5,9 @@
     android:id="@+id/bm_root_coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/transparent"
     app:behavior_hideable="true"
     app:behavior_peekHeight="0dp"
-    android:background="@android:color/transparent"
     app:layout_behavior="@string/bottom_sheet_behavior">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,15 +19,14 @@
 
         <ImageView
             android:id="@+id/iv_drop_down"
-            android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:contentDescription="@string/drop_down_arrow"
-            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_detail_heading1"
@@ -39,9 +38,9 @@
             android:textAllCaps="true"
             android:textColor="@android:color/holo_blue_light"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_drop_down"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/iv_drop_down" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_detail_heading2"
@@ -49,23 +48,62 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="10dp"
+            android:text="4 Must Try Local Foods in Barcelona"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_heading1"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="4 Must Try Local Foods in Barcelona" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_heading1" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginTop="8dp"
+            android:layout_height="200dp"
             android:layout_marginHorizontal="10dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_heading2"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_heading2" />
+
+        <LinearLayout
+            android:id="@+id/ll_dots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewPager">
+
+            <ImageView
+                android:id="@+id/iv_dot1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:elevation="10dp"
+                android:src="@drawable/ic_baseline_circle_24"/>
+            <ImageView
+                android:id="@+id/iv_dot2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:src="@drawable/ic_baseline_circle_24"/>
+            <ImageView
+                android:id="@+id/iv_dot3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:src="@drawable/ic_baseline_circle_24"/>
+            <ImageView
+                android:id="@+id/iv_dot4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:src="@drawable/ic_baseline_circle_24"/>
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

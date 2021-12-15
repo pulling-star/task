@@ -7,4 +7,5 @@
     <string name="food_one">Food one image</string>
     <string name="food_two">Food two image</string>
     <string name="drop_down_arrow">Drop down arrow</string>
+    <string name="slider_image">Slider Image</string>
 </resources>
