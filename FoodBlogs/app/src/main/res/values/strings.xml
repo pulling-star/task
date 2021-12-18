@@ -8,4 +8,10 @@
     <string name="food_two">Food two image</string>
     <string name="drop_down_arrow">Drop down arrow</string>
     <string name="slider_image">Slider Image</string>
+    <string name="dot_image">Dot image</string>
+    <string name="dropdown_image">DropDown Image</string>
+    <string name="about">About</string>
+    <string name="where_to_eat">Where to eat</string>
+    <string name="photo">photo</string>
+    <string name="best">BEST</string>
 </resources>

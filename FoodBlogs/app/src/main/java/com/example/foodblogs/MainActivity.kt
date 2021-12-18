@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import androidx.viewpager2.widget.ViewPager2
+import com.example.foodblogs.adapter.FoodAdapter
 import com.example.foodblogs.adapter.SliderAdapter
 import com.example.foodblogs.databinding.ActivityMainBinding
 import com.example.foodblogs.model.BaseResponse
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val _detailBlogBehaviour: BottomSheetBehavior<View> by lazy { BottomSheetBehavior.from(_binding.bottomSheetBlogDetail.bmRootCoordinator as View) }
 
     private val sliderImageList = mutableListOf<String>()
+    private var foodCardList = mutableListOf<Card>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,6 +88,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                                 ivFoodTwo.setImage(sortedCardList[1].img)
                                 for(item in data.card){ sliderImageList.add(item.img) }
                             }
+                            foodCardList = data.card.map{ it.copy()}.toMutableList()
                         }
                     }
                 }
