@@ -24,12 +24,4 @@ object Extensions {
         snackBar.show()
     }
 
-    fun String?.forHtmlText(): String {
-        return when {
-            this != null -> when{
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.N -> Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT).toString()
-                else -> Html.fromHtml(this).toString()
-            } else -> ""
-        }
-    }
 }

@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.foodblogs.adapter.FoodAdapter
+import com.example.foodblogs.adapter.PhotoAdapter
 import com.example.foodblogs.adapter.SliderAdapter
 import com.example.foodblogs.databinding.ActivityMainBinding
 import com.example.foodblogs.model.BaseResponse
@@ -32,37 +33,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(_binding.root)
-        _mainViewModel = MainViewModel()
-        _sliderAdapter = SliderAdapter()
-        _binding.bottomSheetBlogDetail.viewPager.adapter = _sliderAdapter
+        initializingVariables()
         setOnClickListeners()
         getFoodDetailsFromApi()
         _binding.bottomSheetBlogDetail.viewPager.registerOnPageChangeCallback(viewPagerCallBack)
     }
 
-    private val viewPagerCallBack = object : ViewPager2.OnPageChangeCallback(){
-        override fun onPageSelected(position: Int) {
-            when(position){
-                0 -> updateDotUI(dotOne = true,dotTwo = false,dotThree = false,dotFour = false)
-                1 -> updateDotUI(dotOne = false,dotTwo = true,dotThree = false,dotFour = false)
-                2 -> updateDotUI(dotOne = false,dotTwo = false,dotThree = true,dotFour = false)
-                3 -> updateDotUI(dotOne = false,dotTwo = false,dotThree = false,dotFour = true)
-            }
-        }
-    }
-
-    private fun updateDotUI(dotOne:Boolean,dotTwo:Boolean,dotThree:Boolean,dotFour:Boolean){
-        setImageUI(dotOne,_binding.bottomSheetBlogDetail.ivDot1)
-        setImageUI(dotTwo,_binding.bottomSheetBlogDetail.ivDot2)
-        setImageUI(dotThree,_binding.bottomSheetBlogDetail.ivDot3)
-        setImageUI(dotFour,_binding.bottomSheetBlogDetail.ivDot4)
-    }
-
-    private fun setImageUI(dotAction: Boolean,imageView:ImageView) {
-        when(dotAction){
-            true -> imageView.setImageResource(R.drawable.ic_baseline_circle_24_black)
-            false -> imageView.setImageResource(R.drawable.ic_baseline_circle_24)
-        }
+    private fun initializingVariables() {
+        _mainViewModel = MainViewModel()
+        _sliderAdapter = SliderAdapter()
+        _binding.bottomSheetBlogDetail.viewPager.adapter = _sliderAdapter
+        _binding.bottomSheetBlogDetail.foodRecycler.adapter = _foodAdapter
     }
 
     private fun setOnClickListeners() {
@@ -88,7 +69,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                                 ivFoodTwo.setImage(sortedCardList[1].img)
                                 for(item in data.card){ sliderImageList.add(item.img) }
                             }
-                            foodCardList = data.card.map{ it.copy()}.toMutableList()
+                            foodCardList = sortByCardNo(data.card)
+                            for(item in foodCardList){
+
+                            }
                         }
                     }
                 }
@@ -102,7 +86,39 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         })
     }
 
-    private fun sortByCardNo(list: List<Card>) : List<Card>{
+    private val _foodAdapter:FoodAdapter by lazy { FoodAdapter(mutableListOf()) { _,_,card ->
+        //Handling slider image based on click action
+        _binding.bottomSheetBlogDetail.viewPager.currentItem = card.card_no -1
+    } }
+
+    //Callback for dot indicators
+    private val viewPagerCallBack = object : ViewPager2.OnPageChangeCallback(){
+        override fun onPageSelected(position: Int) {
+            when(position){
+                0 -> updateDotUI(dotOne = true,dotTwo = false,dotThree = false,dotFour = false)
+                1 -> updateDotUI(dotOne = false,dotTwo = true,dotThree = false,dotFour = false)
+                2 -> updateDotUI(dotOne = false,dotTwo = false,dotThree = true,dotFour = false)
+                3 -> updateDotUI(dotOne = false,dotTwo = false,dotThree = false,dotFour = true)
+            }
+        }
+    }
+
+    private fun updateDotUI(dotOne:Boolean,dotTwo:Boolean,dotThree:Boolean,dotFour:Boolean){
+        setImageUI(dotOne,_binding.bottomSheetBlogDetail.ivDot1)
+        setImageUI(dotTwo,_binding.bottomSheetBlogDetail.ivDot2)
+        setImageUI(dotThree,_binding.bottomSheetBlogDetail.ivDot3)
+        setImageUI(dotFour,_binding.bottomSheetBlogDetail.ivDot4)
+    }
+
+    private fun setImageUI(dotAction: Boolean,imageView:ImageView) {
+        when(dotAction){
+            true -> imageView.setImageResource(R.drawable.ic_baseline_circle_24_black)
+            false -> imageView.setImageResource(R.drawable.ic_baseline_circle_24)
+        }
+    }
+
+    //Sort using collections
+    private fun sortByCardNo(list: List<Card>) : MutableList<Card>{
         val sortedList = list.map { it.copy() }.toMutableList()
         sortedList.sortBy { it.card_no }
         return sortedList
@@ -113,7 +129,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.cv_dashboard -> {
                 _detailBlogBehaviour.state = BottomSheetBehavior.STATE_EXPANDED
                 _sliderAdapter.updateList(sliderImageList)
-
+                _foodAdapter.updateList(foodCardList)
             }
         }
     }
