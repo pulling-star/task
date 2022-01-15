@@ -18,7 +18,7 @@ object ProgressUtils {
                 progressDialog!!.setCancelable(false)
                 progressDialog!!.setCanceledOnTouchOutside(false)
                 progressDialog?.show()
-                progressDialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+                progressDialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 progressDialog?.setContentView(R.layout.progress_bar)
             }
         }

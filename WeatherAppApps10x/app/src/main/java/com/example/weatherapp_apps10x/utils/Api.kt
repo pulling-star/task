@@ -1,5 +1,6 @@
 package com.example.weatherapp_apps10x.utils
 
+import com.example.weatherapp_apps10x.model.ForecastResponse
 import com.example.weatherapp_apps10x.model.WeatherResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -13,5 +14,5 @@ interface Api {
 
     @GET("data/2.5/forecast")
     suspend fun getForecastDetails(@Query("q") q:String,
-                                  @Query("APPID") appId:String): Response<WeatherResponse>
+                                  @Query("APPID") appId:String): Response<ForecastResponse>
 }

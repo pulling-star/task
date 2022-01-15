@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MainViewModel:ViewModel() {
+class MainViewModel : ViewModel() {
 
     fun getWeatherDetails(): LiveData<ApiResult<*>> {
 
@@ -20,7 +20,10 @@ class MainViewModel:ViewModel() {
         try {
             viewModelScope.launch {
                 withContext(IO) {
-                    val response = RetrofitClient().instance.getWeatherDetails("Bengaluru","9b8cb8c7f11c077f8c4e217974d9ee40")
+                    val response = RetrofitClient().instance.getWeatherDetails(
+                        "Bengaluru",
+                        "9b8cb8c7f11c077f8c4e217974d9ee40"
+                    )
                     val responseBody = response.body()
                     when {
                         response.isSuccessful -> {
@@ -52,7 +55,10 @@ class MainViewModel:ViewModel() {
         try {
             viewModelScope.launch {
                 withContext(IO) {
-                    val response = RetrofitClient().instance.getForecastDetails("Bengaluru","9b8cb8c7f11c077f8c4e217974d9ee40")
+                    val response = RetrofitClient().instance.getForecastDetails(
+                        "Bengaluru",
+                        "9b8cb8c7f11c077f8c4e217974d9ee40"
+                    )
                     val responseBody = response.body()
                     when {
                         response.isSuccessful -> {

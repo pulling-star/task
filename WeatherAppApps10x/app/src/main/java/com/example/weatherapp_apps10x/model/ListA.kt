@@ -5,7 +5,7 @@ data class ListA(
     val dt: Int,
     val dt_txt: String,
     val main: Main,
-    val pop: Int,
+    val pop: Double,
     val rain: Rain,
     val sys: Sys,
     val visibility: Int,
